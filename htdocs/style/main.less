@@ -1,0 +1,130 @@
+@charset "utf-8";
+//@import "../lib/bootstrap/less/variables.less";
+//@import "../lib/bootstrap/less/mixins.less";
+
+//@import "./vote.less";
+
+
+@footer_height : 150px;
+
+@col_main : #307EA9;
+@col_sub1 : #76B4DB;
+//@col_sub2 : #C2DEF6;
+@col_sub2 : #F0F0FF;
+@col_back : #FFFFFF;
+//@col_acce : yellow;
+@col_acce : orange;
+//@col_acce : green;
+
+@col_rank_gold: gold;
+@col_rank_silver: silver;
+@col_rank_bronds: bronds;
+
+//@logo_h: 54px;
+//@logo_w: 260px;
+@logo_n_h: 45px;
+@logo_n_w: 216px;
+
+@logo_m_h: 54px;
+@logo_m_w: 260px;
+@logo_mn_h: 45px;
+@logo_mn_w: 216px;
+
+html,body {
+	height: 100%;
+    background: @col_back;
+//    font-family:"Times New Roman",Georgia,Serif;
+    font-family:'Avenir', 'Arial', 'Helvetica', 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
+
+}
+
+//a {
+//    color: @col_sub1;
+//    font-weight: bold;
+//    &:hover {
+//        color: @col_sub1;
+//    }
+//}
+
+#wrapper {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+    padding-bottom: @footer_height + 20px;
+//    margin-top: 54px;
+//    text-align: center;
+}
+
+#navbar {
+    .navbar-right {
+        margin-right: 10px;
+    }
+}
+
+#footer {
+	position: relative;
+	margin-top: 0 - @footer_height;
+	height: @footer_height;
+	clear: both;
+	padding-top: 20px;
+	background-color: gray;
+
+    .row>div {
+
+    }
+    a {
+        color: white;
+    }
+    ul >li {
+        margin-left: 5px;
+    }
+}
+
+
+.col-img {
+    >img {
+        width: 100%;
+    }
+}
+.btn-right {
+    float: right;
+}
+
+// affix
+.bs-docs-sidenav.affix {
+//    top: 100px;
+    top: 20px;
+    position: fixed;
+}
+
+.col-img {
+    img {
+        width: 100%;
+    }
+}
+
+
+//yopparatter 
+.slidebar-div {
+    .row {
+        overflow: hidden;
+        height: 100px;
+        .col-xs-8 {
+            position: relative;
+            top: 50%;
+            > .slider {
+                width: 100%;
+            }
+        }
+    }
+}
+
+.btn[disabled] {
+    background-color: #aaa;
+    border-color: #666;
+}
+
+
+
+// after import
+@import "./xs.less";
