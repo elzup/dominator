@@ -6,6 +6,9 @@ htdocs/lib/
 htdocs/google/
 htdocs/pro/
 application/controllers/admin.php
+application/config/development/
+application/config/testing/
+application/config/production/
 nbproject/
 plan/*
 !plan/todo.md

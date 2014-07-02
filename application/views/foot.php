@@ -21,7 +21,7 @@
 			</div>
 			<div class="col-sm-4">
 				<ul>
-					<li><a <?= attr_href('//twitter.com/arzzup', NULL, FALSE) ?>>作者 @Arzzup</a></li>
+					<li><a <?= attr_href('//twitter.com/arzzup', NULL, FALSE) ?>>作者</a></li>
 				</ul>
 			</div>
 		</div>

@@ -58,7 +58,7 @@ class Yopparai
 	{
 
 		$ycp = $this->config->item('YAHOO_APP');
-        $yp_keys = $ysp['yopparatter'];
+        $yp_keys = $ycp['yopparatter'];
 
 		$url = 'http://jlp.yahooapis.jp/FuriganaService/V1/furigana';
 		$url .= '?appid=' . $yp_keys['key'];
