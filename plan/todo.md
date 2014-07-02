@@ -3,14 +3,16 @@
 
 #local
 ## level1
-* db settgin
+* 
 ## level2
+* db setup
+    * yopparatter - log
 
 ## level3
 
-#server
-
 ---
+#server
+* setting host
 
 
 

@@ -93,6 +93,7 @@ $autoload['helper'] = array(
 
 $autoload['config'] = array(
 		'my_twitter',
+		'my_yahoo',
 );
 
 

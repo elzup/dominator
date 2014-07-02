@@ -110,10 +110,5 @@ define('ICON_TARGET', 'fa fa-eye');
 define('ICON_AWARD', 'fa fa-trophy');
 define('ICON_LOGIN', 'fa fa-login');
 
-// TODO: change to hook
-/* keys */
-define('YAHOO_APP_KEY', 'dj0zaiZpPUJXQW1QVlROZGFSUCZzPWNvbnN1bWVyc2VjcmV0Jng9MGM-');
-define('YAHOO_APP_KEY_SECRET', 'e9d1576e6c8e9a8f10b19b18f115456cf530eee8');
-
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */

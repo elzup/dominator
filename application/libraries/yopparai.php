@@ -57,8 +57,11 @@ class Yopparai
 	public function hurigana($text, $level)
 	{
 
+		$ycp = $this->config->item('YAHOO_APP');
+        $yp_keys = $ysp['yopparatter'];
+
 		$url = 'http://jlp.yahooapis.jp/FuriganaService/V1/furigana';
-		$url .= '?appid=' . YAHOO_APP_KEY;
+		$url .= '?appid=' . $yp_keys['key'];
 		$url .= '&grade=1';
 		$url .= '&sentence=' . urlencode($text);
 		$xml = file_get_contents($url);

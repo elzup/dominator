@@ -1,0 +1,16 @@
+.*
+!.gitignore
+system/
+
+htdocs/lib/
+htdocs/google/
+htdocs/pro/
+application/controllers/admin.php
+application/config/*/my*.php
+nbproject/
+plan/*
+!plan/todo.md
+test*
+
+*~*
+
