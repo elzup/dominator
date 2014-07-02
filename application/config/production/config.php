@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://elzup.com/';
+$config['base_url']	= 'http://app.elzup.com/';
 
 /*
 |--------------------------------------------------------------------------

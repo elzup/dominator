@@ -47,13 +47,13 @@ define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 */
 
 /* site meta */
-define('SITE_NAME', 'elzup.com');
-define('SITE_DESCRIPTION', 'えるざっぷの創作物などのHP');
+define('SITE_NAME', 'ELZ APPs');
+define('SITE_DESCRIPTION', 'えるざっぷ製あぷり');
 
-define('YOPPARATTER_URL', '//elzup.com/yopparatter');
+define('YOPPARATTER_URL', '//app.elzup.com/yopparatter');
 //define('YOPPARATTER_URL_S', '//elzup.com/yp');
-define('YOPPARATTER_URL_S', '//elzup.com/yopparatter');
-define('YOPPARATTER_URL_POST', '//elzup.com/yopparatter/post');
+define('YOPPARATTER_URL_S', '//app.elzup.com/yopparatter');
+define('YOPPARATTER_URL_POST', '//app.elzup.com/yopparatter/post');
 
 define('PATH_LOGIN_Y', 'auth/start/yopparatter');
 define('PATH_LOGOUT', 'auth/logout');
