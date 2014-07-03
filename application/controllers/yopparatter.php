@@ -50,8 +50,11 @@ class Yopparatter extends CI_Controller
 			$this->session->set_userdata(array('err' => '本文が空です'));
 			jump('./');
 		}
+
 		$isset_url = !!$this->input->post('set_url');
-		$yopparai = new Yopparai($text, $level);
+		$ycp = $this->config->item('YAHOO_APP');
+        $yp_keys = $ycp['yopparatter'];
+		$yopparai = new Yopparai($yp_keys, $text, $level);
 		$tweet_text = $yopparai->get_text() . ' #yopparatter' . ($isset_url ? ' ' . substr(YOPPARATTER_URL_S, 2) : '');
 		$res = $user->post($tweet_text);
 		if (isset($res->errors))

@@ -4,14 +4,16 @@ class Yopparai
 {
 
 	public $text;
+	private $keys;
 
 	/**
 	 * 
 	 * @param string $text
 	 * @param int $level
 	 */
-	function __construct($text = NULL, $level = 50)
+	function __construct($keys = NULL, $text = NULL, $level = 50)
 	{
+        $this->keys = $keys;
 		$this->set($text, $level);
 	}
 
@@ -57,11 +59,8 @@ class Yopparai
 	public function hurigana($text, $level)
 	{
 
-		$ycp = $this->config->item('YAHOO_APP');
-        $yp_keys = $ycp['yopparatter'];
-
 		$url = 'http://jlp.yahooapis.jp/FuriganaService/V1/furigana';
-		$url .= '?appid=' . $yp_keys['key'];
+		$url .= '?appid=' . $this->keys['key'];
 		$url .= '&grade=1';
 		$url .= '&sentence=' . urlencode($text);
 		$xml = file_get_contents($url);
