@@ -31,10 +31,12 @@ class User_model extends CI_Model
 
 	public function check_login($mode = 'no')
 	{
+		echo '<pre>';
 		$tcp = $this->config->item('TWITTER_CONSUMER');
 		$twitter_config = $tcp[$mode];
 
-		$serial = @$this->session->userdata('userserial');
+		var_dump($this->session->all_userdata());
+		echo $serial = @$this->session->userdata('userserial');
 		if (!empty($serial))
 		{
 			$this->user = unserialize($serial);
@@ -49,11 +51,14 @@ class User_model extends CI_Model
 		$connection = new TwitterOAuth($twitter_config['key'], $twitter_config['secret'], $access_token['oauth_token'], $access_token['oauth_token_secret']);
 		$id_twitter = $access_token['user_id'];
 		$screen_name = $access_token['screen_name'];
-//		$result = $connection->get('account/verify_credentials');
-//		$img_url = $result->profile_image_url;
-//		echo 'getting';
-		$this->user = new Userobj($connection, $id_twitter, $screen_name, $img_url = NULL);
-		$this->session->set_userdata(array('userserial' => serialize($this->user)));
+		$result = $connection->get('account/verify_credentials');
+		var_dump($result);
+		$img_url = $result->profile_image_url;
+		echo 'image_get';
+		$this->user = new Userobj($connection, $id_twitter, $screen_name, $img_url);
+//		$this->session->set_userdata('userserial', serialize($this->user));
+		$this->session->set_userdata(array('hogehoge' => "this is test hoge."));
+		var_dump($this->session->all_userdata());
 		return TRUE;
 	}
 

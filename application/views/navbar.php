@@ -10,9 +10,6 @@ if ($user == null)
 $is_pc = is_pc_viewport($this->input->server('HTTP_USER_AGENT'));
 
 ?>
-<?php
-/* @var $user Userobj */
-?>
 <nav class="navbar navbar-default" id="navbar">
 	<div class="navbar-header">
 		<button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-categlyes">
@@ -31,17 +28,18 @@ $is_pc = is_pc_viewport($this->input->server('HTTP_USER_AGENT'));
 			{
 				?>
 				<li>
-					<a <?= attr_href(PATH_LOGIN . 'yp') ?>><?= tag_icon(ICON_TWITTER) ?>Twitterでログイン</a>
+					<a <?= attr_href(PATH_LOGIN . $meta->mode) ?>><?= tag_icon(ICON_TWITTER) ?>Twitterでログイン</a>
 				</li>
 				<?php
 			} else
 			{
 				?>
 				<li>
+					<img src="<?= $user->img_url ?>" alt="アイコン">
 					<a <?= attr_href('//twitter.com/' . $user->screen_name, NULL, FALSE) ?>><?= $user->screen_name ?></a>
 				</li>
 				<li>
-					<a <?= attr_href(PATH_LOGOUT . 'yp') ?>>ログアウトする</a>
+					<a <?= attr_href(PATH_LOGOUT . $meta->mode) ?>>ログアウトする</a>
 				</li>
 			<?php } ?>
 

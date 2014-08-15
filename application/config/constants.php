@@ -61,7 +61,7 @@ define('NAME_NENSYATTER', '念写ったー');
 define('URL_NENSYATTER', '//app.elzup.com/' . MODE_NENSYATTER);
 
 define('PATH_LOGIN', 'auth/start/');
-define('PATH_LOGOUT', 'auth/logout');
+define('PATH_LOGOUT', 'auth/logout/');
 define('PATH_AUTH_END', 'auth/end/');
 
 /* path */

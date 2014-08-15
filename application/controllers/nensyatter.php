@@ -10,12 +10,12 @@ class Nensyatter extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('User_model', 'user');
-		$this->user->set_check_login('nn');
+		$this->user->set_check_login(MODE_NENSYATTER);
 	}
 
 	public function index()
 	{
-		$user = $this->user->get_user();
+		$user = $this->user->get_user(MODE_NENSYATTER);
 		$meta = new Metaobj();
 		$meta->setup_nensyatter();
 		$this->load->view('head', array('meta' => $meta, 'bootstrap_url' => PATH_LIB_BOOTSTRAP_CSS2));

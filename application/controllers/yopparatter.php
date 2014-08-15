@@ -10,7 +10,7 @@ class Yopparatter extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('User_model', 'user');
-		$this->user->set_check_login('yp');
+		$this->user->set_check_login(MODE_YOPPARATTER);
 	}
 
 	public function index()
@@ -39,7 +39,7 @@ class Yopparatter extends CI_Controller
 
 	public function post()
 	{
-		$this->user->set_check_login('yp');
+		$this->user->set_check_login(MODE_YOPPARATTER);
 		$user = $this->user->get_user();
 		$text = $this->input->post('text');
 		$level = $this->input->post('level');
@@ -55,7 +55,7 @@ class Yopparatter extends CI_Controller
 
 		$isset_url = !!$this->input->post('set_url');
 		$ycp = $this->config->item('YAHOO_APP');
-        $yp_keys = $ycp['yp'];
+        $yp_keys = $ycp[MODE_YOPPARATTER];
 		$yopparai = new Yopparai($yp_keys, $text, $level);
 		$tweet_text = $yopparai->get_text() . ' #yopparatter' . ($isset_url ? ' ' . substr(URL_YOPPARATTER, 2) : '');
 		$res = $user->post($tweet_text);
