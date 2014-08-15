@@ -40,8 +40,8 @@
 
 $route['default_controller'] = "index";
 $route['404_override'] = '';
-
-
+$route['yp']  = 'yopparatter';
+$route['nn']  = 'nensyatter';
 
 //$route['(:num)'] = 'survey/vote/$1';
 //$route['(:num)/(:num)'] = 'survey/vote/$1/$2';

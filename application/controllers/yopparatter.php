@@ -31,7 +31,7 @@ class Yopparatter extends CI_Controller
 			$messages[] = $posted;
 		}
 
-		$this->load->view('yopparatternavbar', array('user' => $user));
+		$this->load->view('navbar', array('meta' => $meta, 'user' => $user));
 		$this->load->view('alert', array('messages' => $messages));
 		$this->load->view('yopparatterform', array('token' => $this->_set_token(), 'is_login' => !!$user));
 		$this->load->view('yopparatterfoot');

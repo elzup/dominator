@@ -12,6 +12,7 @@ class Metaobj
 	private $type;
 	public $no_meta;
 	public $no_og;
+	public $mode;
 
 	public function __construct()
 	{
@@ -74,7 +75,19 @@ class Metaobj
 		$this->type = 'website';
 		$this->set_title('ヨッパラッタ～');
 		$this->keywords = array('twitter,投稿,ヨッパラッタ～');
+		$this->mode = 'yp';
 	}
+
+	public function setup_nensyatter()
+	{
+		$this->url = YOPPARATTER_URL;
+		$this->description = 'あなたのTwitterアイコンを念写する！';
+		$this->type = 'website';
+		$this->set_title('念写ったー');
+		$this->keywords = array('twitter,念写ったー,アイコン');
+		$this->mode = 'nn';
+	}
+
 
 	/*
 	  public function setup_make()
