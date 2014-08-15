@@ -10,6 +10,7 @@ class Include_hook
 	{
 		define('LIBPATH', 'lib/');
 		include_once(FCPATH . LIBPATH . 'twitteroauth.php');
+		include_once(FCPATH . LIBPATH . 'colors.inc.php');
 	}
 
 }

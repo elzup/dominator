@@ -10,6 +10,7 @@ class Yopparatter extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('User_model', 'user');
+		$this->user->set_check_login('yp');
 	}
 
 	public function index()
@@ -38,6 +39,7 @@ class Yopparatter extends CI_Controller
 
 	public function post()
 	{
+		$this->user->set_check_login('yp');
 		$user = $this->user->get_user();
 		$text = $this->input->post('text');
 		$level = $this->input->post('level');

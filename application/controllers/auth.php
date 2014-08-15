@@ -19,7 +19,7 @@ class Auth extends CI_Controller
 		$this->start();
 	}
 
-	function start($mode = 'normal')
+	function start($mode = 'no')
 	{
  		$this->session->set_userdata(array('referer' => $this->input->server('HTTP_REFERER')));
 		$tcp = $this->config->item('TWITTER_CONSUMER');
@@ -28,7 +28,7 @@ class Auth extends CI_Controller
 				'consumer_key' => $twitter_config['key'],
 				'consumer_secret' => $twitter_config['secret'],
 		));
-		$callback_uri = base_url($mode == 'yopparatter' ? PATH_AUTH_END_Y : PATH_AUTH_END);
+		$callback_uri = base_url(PATH_AUTH_END . $mode);
 
 		$connection = new TwitterOAuth($twitter_config['key'], $twitter_config['secret']);
 		$request_token = $connection->getRequestToken($callback_uri);

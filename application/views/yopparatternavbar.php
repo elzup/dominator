@@ -19,7 +19,7 @@
 			{
 				?>
 				<li>
-					<a <?= attr_href(PATH_LOGIN_Y) ?>><?= tag_icon(ICON_TWITTER) ?>Twitterでログイン</a>
+					<a <?= attr_href(PATH_LOGIN . 'yp') ?>><?= tag_icon(ICON_TWITTER) ?>Twitterでログイン</a>
 				</li>
 				<?php
 			} else
@@ -29,7 +29,7 @@
 					<a <?= attr_href('//twitter.com/' . $user->screen_name, NULL, FALSE) ?>><?= $user->screen_name ?></a>
 				</li>
 				<li>
-					<a <?= attr_href(PATH_LOGOUT . '/y') ?>>ログアウトする</a>
+					<a <?= attr_href(PATH_LOGOUT . 'yp') ?>>ログアウトする</a>
 				</li>
 			<?php } ?>
 

@@ -9,7 +9,10 @@ class User_model extends CI_Model
 	public function __construct()
 	{
 		parent::__construct();
-		$this->is_login = $this->check_login();
+	}
+
+	public function set_check_login($mode) {
+		$this->is_login = $this->check_login($mode);
 	}
 
 	public function is_login()
@@ -26,10 +29,10 @@ class User_model extends CI_Model
 		return $this->is_login ? $this->user : NULL;
 	}
 
-	public function check_login()
+	public function check_login($mode = 'no')
 	{
 		$tcp = $this->config->item('TWITTER_CONSUMER');
-		$twitter_config = $tcp['yopparatter'];
+		$twitter_config = $tcp[$mode];
 
 		$serial = @$this->session->userdata('userserial');
 		if (!empty($serial))

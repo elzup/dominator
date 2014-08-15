@@ -3,10 +3,13 @@
 
 #local
 ## level1
-* create top page
+* 漢字DBの作成
+* PHP画像処理
+* ねんしゃったー
+* DB連携
 ## level2
+* サイトでグローバルにログイン
 * db setup
-    * yopparatter - log
 
 ## level3
 

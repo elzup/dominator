@@ -55,7 +55,7 @@ $post_url = $l[ENVIRONMENT];
 					{
 						?>
 						<button type="submit" class="btn btn-lg btn-primary btn-block" disabled="">ツイートする</button>
-						<a <?= attr_href(PATH_LOGIN_Y) ?> class="btn btn-info btn-block btn-lg"><?= tag_icon(ICON_TWITTER) ?>Twitterでログイン</a>
+						<a <?= attr_href(PATH_LOGIN . 'yp') ?> class="btn btn-info btn-block btn-lg"><?= tag_icon(ICON_TWITTER) ?>Twitterでログイン</a>
 <?php } ?>
 				</div>
 			</div>
