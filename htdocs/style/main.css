@@ -1,0 +1,76 @@
+@charset "utf-8";
+html,
+body {
+  height: 100%;
+  background: #ffffff;
+  font-family: 'Avenir', 'Arial', 'Helvetica', 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
+}
+#wrapper {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  padding-bottom: 170px;
+}
+#navbar .navbar-right {
+  margin-right: 10px;
+}
+#footer {
+  position: relative;
+  margin-top: -150px;
+  height: 150px;
+  clear: both;
+  padding-top: 20px;
+  background-color: gray;
+}
+#footer a {
+  color: white;
+}
+#footer ul > li {
+  margin-left: 5px;
+}
+.col-img > img {
+  width: 100%;
+}
+.btn-right {
+  float: right;
+}
+.bs-docs-sidenav.affix {
+  top: 20px;
+  position: fixed;
+}
+.col-img img {
+  width: 100%;
+}
+.slidebar-div .row {
+  overflow: hidden;
+  height: 100px;
+}
+.slidebar-div .row .col-xs-8 {
+  position: relative;
+  top: 50%;
+}
+.slidebar-div .row .col-xs-8 > .slider {
+  width: 100%;
+}
+.btn[disabled] {
+  background-color: #aaa;
+  border-color: #666;
+}
+.app-box {
+  border-right: solid black;
+  border-bottom: solid black;
+  padding-bottom: 24px;
+}
+@media (max-width: 767px) {
+  .slidebar-div .row {
+    height: 60px;
+    width: 100%;
+  }
+  .slidebar-div .row > .col-xs-2 {
+    padding: 0;
+  }
+  .slidebar-div .row > .col-xs-8 {
+    height: 20px;
+    padding: 0;
+  }
+}
