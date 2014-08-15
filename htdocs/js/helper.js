@@ -6,7 +6,7 @@ var $submit;
 
         // checking form
         $submit = $('button[type=submit]');
-        $ta = $('#textArea');
+        $ta = $('.check-input');
         checkEmpty();
 
 //        $ta.change(function () {
@@ -22,6 +22,10 @@ var $submit;
     });
 
     function checkEmpty() {
+        if (!$ta.length) {
+            console.log("skip");
+            return;
+        }
         if (!$ta.val()) {
             $submit.attr('disabled', '');
         }

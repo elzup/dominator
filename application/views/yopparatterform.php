@@ -26,7 +26,7 @@ $post_url = $l[ENVIRONMENT];
 			</div>
 			<div class="form-group">
 				<div class="col-lg-10 col-lg-offset-1">
-					<label for="textArea" class="control-label">ひょんぶん</label>
+					<label for="textArea" class="control-label check-input">ひょんぶん</label>
 					<textarea class="form-control" <?= $is_login ? '' : 'disabled' ?> name="text" rows="3" id="textArea"></textarea>
 					<div class="row">
 						<div class="col-sm-6">

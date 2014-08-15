@@ -37,4 +37,14 @@ class Nensyatter extends CI_Controller
 		$this->load->view('foot');
 	}
 
+	public function sn($sn = NULL) {
+		if (empty($sn) && ($sn = @$this->input->post('sn'))) {
+			redirect('http://' . base_url(MODE_NENSYATTER . '/sn/' . $sn));
+		}
+		if (empty($sn)) {
+			redirect('http://' . base_url(MODE_NENSYATTER));
+		}
+		echo $sn;
+	}
+
 }
