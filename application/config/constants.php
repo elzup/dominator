@@ -50,10 +50,15 @@ define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 define('SITE_NAME', 'ELZ APPs');
 define('SITE_DESCRIPTION', 'えるざっぷ製あぷり');
 
-define('YOPPARATTER_URL', '//app.elzup.com/yp');
-//define('YOPPARATTER_URL_S', '//elzup.com/yp');
-define('YOPPARATTER_URL_S', '//app.elzup.com/yp');
-define('YOPPARATTER_URL_POST', '//app.elzup.com/yp/post');
+define('MODE_YOPPARATTER', 'yp');
+define('MODE_NENSYATTER', 'nn');
+
+define('NAME_YOPPARATTER', 'ヨッパラッタ〜');
+define('URL_YOPPARATTER', '//app.elzup.com/' . MODE_YOPPARATTER);
+define('URL_YOPPARATTER_POST', '//app.elzup.com/' . MODE_YOPPARATTER . '/post');
+
+define('NAME_NENSYATTER', '念写ったー');
+define('URL_NENSYATTER', '//app.elzup.com/yp' . MODE_NENSYATTER);
 
 define('PATH_LOGIN', 'auth/start/');
 define('PATH_LOGOUT', 'auth/logout');

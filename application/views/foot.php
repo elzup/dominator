@@ -1,3 +1,6 @@
+<?php 
+/* @var $meta Metaobj */
+?>
 </div>
 </div>
 <div id="footer">
@@ -7,21 +10,21 @@
 			<div class="col-sm-4">
 				<ul>
 					<?php
-					$text = 'ヨッパラッタ～ ';
-					$uri = YOPPARATTER_URL;
 					?>
-					<?=sharebtn_twitter($text, $uri)?>
+					<?= sharebtn_twitter($meta->share_text, $meta->url)?>
 					<li></li>
 				</ul>
 			</div>
 			<div class="col-sm-4">
+				<h3><a href="<?= base_url()?>">app.elzup.com</a></h3>
 				<ul>
-					<li></li>
+					<li><a href="<?= base_url(MODE_YOPPARATTER)?>">よっぱらった〜</a>
+					<li><a href="<?= base_url(MODE_NENSYATTER)?>">念写った〜</a>
 				</ul>
 			</div>
 			<div class="col-sm-4">
 				<ul>
-					<li><a <?= attr_href('//twitter.com/arzzup', NULL, FALSE) ?>>作者</a></li>
+					<li><a <?= attr_href('//twitter.com/arzzup', NULL, FALSE) ?>>作者 @Arzzup</a></li>
 				</ul>
 			</div>
 		</div>

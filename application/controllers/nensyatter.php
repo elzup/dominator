@@ -17,7 +17,7 @@ class Nensyatter extends CI_Controller
 	{
 		$user = $this->user->get_user();
 		$meta = new Metaobj();
-		$meta->setup_yopparatter();
+		$meta->setup_nensyatter();
 		$this->load->view('head', array('meta' => $meta, 'bootstrap_url' => PATH_LIB_BOOTSTRAP_CSS2));
 		$messages = array();
 		if (($err = $this->session->userdata('err')))
@@ -33,7 +33,8 @@ class Nensyatter extends CI_Controller
 
 		$this->load->view('navbar', array('meta' => $meta, 'user' => $user));
 		$this->load->view('alert', array('messages' => $messages));
-		$this->load->view('yopparatterform', array('token' => $this->_set_token(), 'is_login' => !!$user));
-		$this->load->view('yopparatterfoot');
+		$this->load->view('nensyatterbody', array('user' => $user));
+		$this->load->view('foot');
 	}
+
 }

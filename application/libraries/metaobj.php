@@ -14,6 +14,8 @@ class Metaobj
 	public $no_og;
 	public $mode;
 
+	public $share_text;
+
 	public function __construct()
 	{
 		// TODO: constants
@@ -70,22 +72,24 @@ class Metaobj
 
 	public function setup_yopparatter()
 	{
-		$this->url = YOPPARATTER_URL;
+		$this->mode = 'yp';
+		$this->url = base_url($this->mode);
 		$this->description = 'ヨッパラッタ状態でTweetをひょうこう～！';
 		$this->type = 'website';
-		$this->set_title('ヨッパラッタ～');
+		$this->set_title(NAME_YOPPARATTER);
+		$this->share_text = NAME_YOPPARATTER . ' - 酔っぱらいツイートしよう';
 		$this->keywords = array('twitter,投稿,ヨッパラッタ～');
-		$this->mode = 'yp';
 	}
 
 	public function setup_nensyatter()
 	{
-		$this->url = YOPPARATTER_URL;
+		$this->mode = 'nn';
+		$this->url = base_url($this->mode);
 		$this->description = 'あなたのTwitterアイコンを念写する！';
 		$this->type = 'website';
-		$this->set_title('念写ったー');
+		$this->set_title(NAME_NENSYATTER);
+		$this->share_text = NAME_NENSYATTER . ' - あなたのアイコンを念写しよう';
 		$this->keywords = array('twitter,念写ったー,アイコン');
-		$this->mode = 'nn';
 	}
 
 

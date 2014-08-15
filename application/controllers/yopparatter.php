@@ -34,7 +34,7 @@ class Yopparatter extends CI_Controller
 		$this->load->view('navbar', array('meta' => $meta, 'user' => $user));
 		$this->load->view('alert', array('messages' => $messages));
 		$this->load->view('yopparatterform', array('token' => $this->_set_token(), 'is_login' => !!$user));
-		$this->load->view('yopparatterfoot');
+		$this->load->view('foot', array('meta' => $meta));
 	}
 
 	public function post()
@@ -55,9 +55,9 @@ class Yopparatter extends CI_Controller
 
 		$isset_url = !!$this->input->post('set_url');
 		$ycp = $this->config->item('YAHOO_APP');
-        $yp_keys = $ycp['yopparatter'];
+        $yp_keys = $ycp['yp'];
 		$yopparai = new Yopparai($yp_keys, $text, $level);
-		$tweet_text = $yopparai->get_text() . ' #yopparatter' . ($isset_url ? ' ' . substr(YOPPARATTER_URL_S, 2) : '');
+		$tweet_text = $yopparai->get_text() . ' #yopparatter' . ($isset_url ? ' ' . substr(URL_YOPPARATTER, 2) : '');
 		$res = $user->post($tweet_text);
 		if (isset($res->errors))
 		{

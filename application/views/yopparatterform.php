@@ -1,7 +1,7 @@
 <?php
 /** @var $token string */
 /** @var $is_login boolean */
-$l = array('development' => '//localhost/elzup/htdocs/yopparatter/post', 'testing' => YOPPARATTER_URL_POST, 'production' => YOPPARATTER_URL_POST);
+$l = array('development' => '//localhost/elzup/htdocs/yopparatter/post', 'testing' => URL_YOPPARATTER_POST, 'production' => URL_YOPPARATTER_POST);
 $post_url = $l[ENVIRONMENT];
 ?>
 
