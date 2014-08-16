@@ -1,5 +1,6 @@
 <?php
 /* @var $user UserObj */
+/* @var $icon_url string */
 /* @var $nensya_result string */
 ?>
 
@@ -12,21 +13,8 @@
 		TODO: remove 非ログインユーザです
 
 		<?php } else { ?>
-			<form action="<?= base_url(MODE_NENSYATTER . "/sn") ?>" class="form-horizontal" method="POST">
-				<div class="form-group">
-					<div class="col-lg-10 col-lg-offset-1">
-						<label for="sn" class="control-label">念写するTwitterID</label>
-						@<input type="text" name="sn" class="check-input" />
-					</div>
-				</div>
-				<div class="form-group">
-					<div class="col-lg-10 col-lg-offset-1">
-						<button type="submit" class="btn btn-lg btn-primary btn-block">念写する</button>
-					</div>
-				</div>
-			</form>
-
 			<?php if (!empty($nensya_result)) { ?>
+		<img src="<?= $icon_url ?>" alt="">
 				<form action="<?= base_url(MODE_NENSYATTER . "/post") ?>" class="form-horizontal" method="POST">
 					<div class="form-group">
 						<div class="col-lg-10 col-lg-offset-1">
@@ -55,6 +43,20 @@
 					</div>
 				</form>
 			<?php } ?>
+			<form action="<?= base_url(MODE_NENSYATTER . "/sn") ?>" class="form-horizontal" method="POST">
+				<div class="form-group">
+					<div class="col-lg-10 col-lg-offset-1">
+						<label for="sn" class="control-label">念写するTwitterID</label>
+						@<input type="text" name="sn" class="check-input" />
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-lg-10 col-lg-offset-1">
+						<button type="submit" class="btn btn-lg btn-primary btn-block">念写する</button>
+					</div>
+				</div>
+			</form>
+
 		<?php } ?>
 	</div>
 </div>
