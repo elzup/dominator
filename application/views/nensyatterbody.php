@@ -18,8 +18,12 @@
 				<form action="<?= base_url(MODE_NENSYATTER . "/post") ?>" class="form-horizontal" method="POST">
 					<div class="form-group">
 						<div class="col-lg-10 col-lg-offset-1">
+							<div class="result">
+								<?= str_replace("\n", '<br />', $nensya_result) ?>
+							</div>
 							<label for="textArea" class="control-label">念写結果</label>
-							<textarea class="form-control" <?= $user ? '' : 'disabled' ?> name="text" rows="3" id="textArea"></textarea>
+							<textarea class="form-control" <?= $user ? '' : 'disabled' ?> name="text" rows="3" id="textArea"><?= $nensya_result ?>
+							</textarea>
 							<div class="row">
 								<div class="col-sm-6">
 									<span class="help-block">#nensyatterタグが付きます</span>

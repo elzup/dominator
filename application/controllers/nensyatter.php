@@ -37,8 +37,7 @@ class Nensyatter extends CI_Controller {
 		$meta->setup_nensyatter();
 		$messages = $this->_get_messages();
 
-		$nensya_result = '結果あり';
-		$this->_nensya($icon_url);
+		$nensya_result = chars_to_text($this->_nensya($icon_url));
 
 		$this->load->view('head', array('meta' => $meta, 'bootstrap_url' => PATH_LIB_BOOTSTRAP_CSS2));
 		$this->load->view('navbar', array('meta' => $meta, 'user' => $user));
@@ -47,16 +46,79 @@ class Nensyatter extends CI_Controller {
 		$this->load->view('foot');
 	}
 
-	private function _nensya($icon_url) {
-		$colors = $this->_get_colormaps($icon_url);
-		var_dump($colors);
-		count($colors);
+	/**
+	 * 
+	 * @return FullChar[]
+	 */
+	private function _get_char_lib() {
+		$clib = json_decode(file_get_contents('http:' . base_url('data/map.json')));
+		foreach ($clib as &$c) {
+			$c = new FullChar($c);
+		}
+		return $clib;
 	}
 
-	private function _get_colormaps($icon_url) {
-		$pal = new GetMostCommonColors();
-		$pal->image = $icon_url;
-		return $pal->Get_Color();
+	private function _nensya($icon_url) {
+
+		/* 縮小白黒画像の生成 */
+		$img = imagecreatefromex($icon_url); // image生成
+		$img_resize = imagecreatetruecolor(IMG_SIZE, IMG_SIZE);
+
+		$alpha = imagecolortransparent($img); // 透過色の取得
+		imagefill($img_resize, 0, 0, $alpha);
+		imagecolortransparent($img_resize, $alpha);
+		imagecopyresampled($img_resize, $img, 0, 0, 0, 0, IMG_SIZE, IMG_SIZE, imagesx($img), imagesy($img));
+		imagefilter($img_resize, IMG_FILTER_GRAYSCALE);
+
+		/* 文字列マップ辞書の用意 */
+		$clib = $this->_get_char_lib();
+
+		return $res = $this->_mapping_char($img_resize, $clib);
+	}
+
+	private function _get_match_char(array $map, array $clib) {
+		$min = NULL;
+		$res = NULL;
+		$avg = floor(array_sum($map) / count($map));
+		if ($avg < 114) {
+			$avg = 114;
+		}
+		foreach ($clib as $c) {
+			$val = $c->evalute_similarity($map, $avg);
+			if ($val === TRUE) {
+				break;
+			} elseif ($val === FALSE) {
+				continue;
+			}
+			if (!isset($min) || $min > $val) {
+				$min = $val;
+				$res = $c->char;
+			}
+		}
+		return $res;
+	}
+
+	private function _mapping_char($img, $clib) {
+		$res = array();
+		for ($j = 0; $j < imagesy($img); $j+= IMG_SPLIT) {
+			$res[$j] = array();
+			for ($i = 0; $i < imagesx($img); $i+= IMG_SPLIT) {
+				$map = array();
+				for ($k = 0; $k < IMG_SPLIT; $k++) {
+					for ($l = 0; $l < IMG_SPLIT; $l++) {
+						$map[] = imagecolorat($img, $i + $l, $j + $k) >> 16;
+					}
+				}
+				// 前回と類似のmap
+				if (!empty($map_pre) && calc_similarity($map, $map_pre) < 10) {
+					$res[$j][$i] = $char_pre;
+				} else {
+					$char_pre = $res[$j][$i] = $this->_get_match_char($map, $clib);
+				}
+				$map_pre = $map;
+			}
+		}
+		return $res;
 	}
 
 	private function _get_messages() {
@@ -70,6 +132,31 @@ class Nensyatter extends CI_Controller {
 			$messages[] = $posted;
 		}
 		return $messages;
+	}
+
+}
+
+class FullChar {
+
+	public $char;
+	public $map;
+	public $avg;
+
+	public function __construct(stdclass $obj) {
+		$this->char = $obj->char;
+		$this->map = $obj->map;
+		$this->avg = $obj->avg;
+	}
+
+	public function get_char() {
+		return $this->char;
+	}
+
+	public function evalute_similarity(array $map, $avg) {
+		if (IMG_AVG_DIFF < abs($d = ($this->avg - $avg))) {
+			return $d < 0;
+		}
+		return calc_similarity($map, $this->map);
 	}
 
 }

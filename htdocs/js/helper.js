@@ -34,4 +34,24 @@ var $submit;
         }
     }
 
+    var data = $("#form").serialize(); //送信されたデータ
+    $.ajax({
+        type: "POST",
+        url: "02/03.php", //PHPを呼び出す
+        data: data, //記入されたデータを渡す
+        success: function(xml){
+            $(xml).find("item").each(function(){
+                var name = $(this).find("fullname").text();
+                if(name){
+                    $("#str").html('あなたのフルネームは : '+name);
+                }else{
+                    $("#str").html('記入していませんね？');
+                }
+            });
+        },
+        error:function(){
+            $("#str").html('処理に失敗しました');
+        }
+    });
+
 }(window.jQuery)
