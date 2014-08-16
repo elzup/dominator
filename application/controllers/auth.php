@@ -51,10 +51,11 @@ class Auth extends CI_Controller
 		$access_token = $connection->getAccessToken($this->input->get('oauth_verifier'));
 		$this->session->unset_userdata('oauth_token');
 		$this->session->unset_userdata('oauth_token_secret');
-		$this->session->set_userdata(array ('access_token' => $access_token));
+		$this->session->set_userdata(array ('access_token_' . $mode => $access_token));
 		$ref = $this->session->userdata('referer');
 		$this->session->unset_userdata('referer');
-		jump($mode == 'y' ? (ENVIRONMENT == 'development' ? '//localhost/elzup/htdocs/yopparatter' : URL_YOPPARATTER) : base_url());
+//		jump($mode == 'y' ? (ENVIRONMENT == 'development' ? '//localhost/elzup/htdocs/yopparatter' : URL_YOPPARATTER) : base_url());
+		jump($ref ? : base_url($mode));
 	}
 
 	function logout($mode = "")
@@ -62,7 +63,7 @@ class Auth extends CI_Controller
 		$this->session->sess_destroy();
 		$ref = filter_input(INPUT_SERVER, 'HTTP_REFERER');
 
-		jump($ref ? : ($mode == 'y' ? (ENVIRONMENT == 'development' ? '//localhost/elzup/htdocs/yopparatter' : URL_YOPPARATTER) : base_url()));
+		jump($ref ? : base_url($mode));
 	}
 
 }
