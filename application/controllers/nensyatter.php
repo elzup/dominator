@@ -29,20 +29,24 @@ class Nensyatter extends CI_Controller {
 			redirect('http://' . base_url(MODE_NENSYATTER . '/sn/' . $sn));
 		}
 		$user = $this->user->get_user(MODE_NENSYATTER);
-		if (empty($sn) || !$user) {
+		if (empty($sn)) {
 			redirect('http://' . base_url(MODE_NENSYATTER));
 		}
-		$icon_url = $user->get_image($sn);
+		$messages = array();
+		if ($user) {
+			$icon_url = $user->get_image($sn);
+		} else {
+			$messages[] = 'ログインしていません';
+		}
 		$meta = new Metaobj();
 		$meta->setup_nensyatter();
-		$messages = $this->_get_messages();
+		$messages = array_merge($messages, $this->_get_messages());
 
-		$nensya_result = chars_to_text($this->_nensya($icon_url));
 
 		$this->load->view('head', array('meta' => $meta, 'bootstrap_url' => PATH_LIB_BOOTSTRAP_CSS2));
 		$this->load->view('navbar', array('meta' => $meta, 'user' => $user));
 		$this->load->view('alert', array('messages' => $messages));
-		$this->load->view('nensyatterbody', array('user' => $user, 'nensya_result' => $nensya_result, 'icon_url' => $icon_url));
+		$this->load->view('nensyatterbody', array('user' => $user, 'nensya_url' => $icon_url, 'icon_url' => $icon_url, 'nensya_sn' => $sn));
 		$this->load->view('foot');
 	}
 
@@ -58,22 +62,28 @@ class Nensyatter extends CI_Controller {
 		return $clib;
 	}
 
-	private function _nensya($icon_url) {
+	public function nensya() {
+		$icon_url = $this->input->post('url');
+		$id = $this->input->post('id');
+		$img_char_num = $this->input->post('size') ? : IMG_CHAR_NUM;
+		$size = $img_char_num * IMG_SPLIT;
 
 		/* 縮小白黒画像の生成 */
 		$img = imagecreatefromex($icon_url); // image生成
-		$img_resize = imagecreatetruecolor(IMG_SIZE, IMG_SIZE);
+		$img_resize = imagecreatetruecolor($size, $size);
 
 		$alpha = imagecolortransparent($img); // 透過色の取得
 		imagefill($img_resize, 0, 0, $alpha);
 		imagecolortransparent($img_resize, $alpha);
-		imagecopyresampled($img_resize, $img, 0, 0, 0, 0, IMG_SIZE, IMG_SIZE, imagesx($img), imagesy($img));
+		imagecopyresampled($img_resize, $img, 0, 0, 0, 0, $size, $size, imagesx($img), imagesy($img));
 		imagefilter($img_resize, IMG_FILTER_GRAYSCALE);
 
 		/* 文字列マップ辞書の用意 */
 		$clib = $this->_get_char_lib();
 
-		return $res = $this->_mapping_char($img_resize, $clib);
+		$res = $this->_mapping_char($img_resize, $clib);
+		$text = chars_to_text($res);
+		$this->load->view('nensyaresultxml', array('text' => $text, 'id' => $id));
 	}
 
 	private function _get_match_char(array $map, array $clib) {
@@ -109,7 +119,7 @@ class Nensyatter extends CI_Controller {
 						$map[] = imagecolorat($img, $i + $l, $j + $k) >> 16;
 					}
 				}
-				// 前回と類似のmap
+// 前回と類似のmap
 				if (!empty($map_pre) && calc_similarity($map, $map_pre) < 10) {
 					$res[$j][$i] = $char_pre;
 				} else {

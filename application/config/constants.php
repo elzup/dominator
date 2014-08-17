@@ -90,6 +90,8 @@ define('PATH_LIB_BOOTSTRAP_CSS', PATH_LIB . '/bootstrap/css/bootstrap.min.css');
 define('PATH_LIB_BOOTSTRAP_CSS2', PATH_LIB . '/bootstrap/css2/bootstrap.min.css');
 define('PATH_LIB_LESS', PATH_LIB . '/less-1.3.3.min.js');
 
+define('PATH_IMG_LOADING', PATH_IMG . '/loading-l-3.gif');
+
 /* online lib url */
 define('URL_TWITTER_WIDGETS', 'http://platform.twitter.com/widgets.js');
 define('URL_YAHOO_RESET_CSS', 'http://yui.yahooapis.com/3.0.0/build/cssreset/reset-min.css');

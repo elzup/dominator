@@ -61,6 +61,17 @@ body {
   border-bottom: solid black;
   padding-bottom: 24px;
 }
+.nensya {
+  line-height: 1em;
+  padding: 10px;
+  border: solid 1px;
+  box-shadow: 0 0 7px inset;
+  border-radius: 1em;
+  float: left;
+}
+.nensya#result-b {
+  font-size: 10px;
+}
 @media (max-width: 767px) {
   .slidebar-div .row {
     height: 60px;
