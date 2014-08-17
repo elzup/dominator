@@ -16,7 +16,7 @@
 				<span>@<?= $nensya_sn ?></span>の念写
 				<img src="<?= $nensya_url ?>" alt="">
 				<div class="row nensyas">
-					<div class="col-md-5 col-sm10 col-sm-offset">
+					<div class="col-md-5">
 						<label for="result" class="control-label">念写中(small 100文字)</label>
 						<div class="loading" for="result">
 							<img src="<?= base_url(PATH_IMG_LOADING) ?>" alt="生成中...">
@@ -31,6 +31,14 @@
 						<div id="result-b" class="nensya" size="24" url="<?= $nensya_url ?>" style="display: none"> </div>
 					</div>
 				</div>
+				<div class="row">
+					<div class="col-md-5">
+						<label class="control-label">カスタム念写</label>
+						１辺<input id="custom-nensya-num" type="number" max="30" min="1" value="20" />文字
+						<input class="btn btn-success" type="button" id="custom-nensya" url="<?= base_url(MODE_NENSYATTER . "/tx/" . $nensya_sn) ?>" value="念写">
+					</div>
+				</div>
+
 				<div class="row btn-box">
 					<div class="col-lg-10 col-lg-offset-1">
 						<?php

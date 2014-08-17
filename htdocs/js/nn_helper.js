@@ -1,5 +1,6 @@
 !function ($) {
     $(function() {
+        // 念射の開始
         $('.nensya').each(function (){
             var id = $(this).attr('id');
             var size = $(this).attr('size');
@@ -30,9 +31,7 @@
                                 var share_btn = $('#share-btn-main');
                                 share_btn.show();
                                 var after_href = share_btn.attr('href').replace(encodeURI('{text}'), encodeURI(text.split(",").join("\n")));
-                                console.log(after_href);
                                 share_btn.attr('href', after_href);
-                                console.log(share_btn.attr('href'));
                             }
                         }
                     });
@@ -43,7 +42,11 @@
             });
         });
 
-
+        // カスタムボタン
+        $("#custom-nensya").click(function() {
+            var url = $(this).attr('url') + '/' + $('#custom-nensya-num').val();
+            window.open(url);
+        });
     });
 }(window.jQuery)
 

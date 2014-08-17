@@ -91,6 +91,9 @@ input[type=text] {
   border-bottom: solid black;
   padding-bottom: 24px;
 }
+.nensyas {
+  height: 300px;
+}
 .nensyas > div {
   overflow: auto;
 }
@@ -123,5 +126,8 @@ input[type=text] {
   .slidebar-div .row > .col-xs-8 {
     height: 20px;
     padding: 0;
+  }
+  .nensyas {
+    height: 500px;
   }
 }

@@ -53,8 +53,7 @@ if (!empty($jss))
 	foreach ($jss as $js)
 	{
 		?>
-		<script src="<?= base_url(PATH_JS . "/{$js}.js") ?>" type="text/javascript"></script>
-		<?= tag_script_js(PATH_JS . 'hoge'); ?>
+		<?= tag_script_js(base_url(PATH_JS . "/{$js}.js")); ?>
 		<?php
 	}
 }

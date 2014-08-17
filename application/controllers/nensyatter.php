@@ -44,13 +44,31 @@ class Nensyatter extends CI_Controller {
 		$meta = new Metaobj();
 		$meta->setup_nensyatter();
 		$messages = array_merge($messages, $this->_get_messages());
-
-
 		$this->load->view('head', array('meta' => $meta, 'bootstrap_url' => PATH_LIB_BOOTSTRAP_CSS2));
 		$this->load->view('navbar', array('meta' => $meta, 'user' => $user));
 		$this->load->view('alert', array('messages' => $messages));
 		$this->load->view('nensyatterbody', array('user' => $user, 'nensya_url' => @$icon_url, 'nensya_sn' => $sn));
 		$this->load->view('foot', array('meta' => $meta, 'jss' => array(MODE_NENSYATTER . '_helper')));
+	}
+
+	public function tx($sn, $num) {
+		$user = $this->user->get_user(MODE_NENSYATTER);
+		if ($user) {
+			$img_url = $user->get_image($sn);
+		} else {
+			'you not login';
+		}
+		$text = $this->_get_nensha($img_url, $num);
+		$this->load->view('nensyaresultplain' , array('text' => $text));
+	}
+
+	public function nensya() {
+		$icon_url = $this->input->post('url');
+		$id = $this->input->post('id');
+		$img_char_num = $this->input->post('size') ? : IMG_CHAR_NUM;
+
+		$text = $this->_get_nensha($icon_url, $img_char_num);
+		$this->load->view('nensyaresultxml' , array('text' => $text, 'id' => $id));
 	}
 
 	/**
@@ -65,12 +83,8 @@ class Nensyatter extends CI_Controller {
 		return $clib;
 	}
 
-	public function nensya() {
-		$icon_url = $this->input->post('url');
-		$id = $this->input->post('id');
-		$img_char_num = $this->input->post('size') ? : IMG_CHAR_NUM;
+	private function _get_nensha($icon_url, $img_char_num) {
 		$size = $img_char_num * IMG_SPLIT;
-
 		/* 縮小白黒画像の生成 */
 		$img = imagecreatefromex($icon_url); // image生成
 		$img_resize = imagecreatetruecolor($size, $size);
@@ -85,8 +99,7 @@ class Nensyatter extends CI_Controller {
 		$clib = $this->_get_char_lib();
 
 		$res = $this->_mapping_char($img_resize, $clib);
-		$text = chars_to_text($res);
-		$this->load->view('nensyaresultxml', array('text' => $text, 'id' => $id));
+		return chars_to_text($res);
 	}
 
 	private function _get_match_char(array $map, array $clib) {
