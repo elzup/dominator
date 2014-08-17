@@ -35,6 +35,9 @@ class Nensyatter extends CI_Controller {
 		$messages = array();
 		if ($user) {
 			$icon_url = $user->get_image($sn);
+			if (is_null($icon_url)) {
+				$messages[] = 'danger:(@' . $sn . ')というユーザが見つかりませんでした';
+			}
 		} else {
 			$messages[] = 'ログインしていません';
 		}
