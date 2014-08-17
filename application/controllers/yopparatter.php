@@ -34,7 +34,7 @@ class Yopparatter extends CI_Controller
 		$this->load->view('navbar', array('meta' => $meta, 'user' => $user));
 		$this->load->view('alert', array('messages' => $messages));
 		$this->load->view('yopparatterform', array('token' => $this->_set_token(), 'is_login' => !!$user));
-		$this->load->view('foot', array('meta' => $meta));
+		$this->load->view('foot', array('meta' => $meta, 'jss' => array(MODE_YOPPARATTER . '_helper')));
 	}
 
 	public function post()

@@ -21,7 +21,7 @@ class Nensyatter extends CI_Controller {
 		$this->load->view('navbar', array('meta' => $meta, 'user' => $user));
 		$this->load->view('alert', array('messages' => $messages));
 		$this->load->view('nensyatterbody', array('user' => $user));
-		$this->load->view('foot');
+		$this->load->view('foot', array('meta' => $meta, 'jss' => array(MODE_YOPPARATTER . '_helper')));
 	}
 
 	public function sn($sn = NULL) {
@@ -46,8 +46,8 @@ class Nensyatter extends CI_Controller {
 		$this->load->view('head', array('meta' => $meta, 'bootstrap_url' => PATH_LIB_BOOTSTRAP_CSS2));
 		$this->load->view('navbar', array('meta' => $meta, 'user' => $user));
 		$this->load->view('alert', array('messages' => $messages));
-		$this->load->view('nensyatterbody', array('user' => $user, 'nensya_url' => $icon_url, 'icon_url' => $icon_url, 'nensya_sn' => $sn));
-		$this->load->view('foot');
+		$this->load->view('nensyatterbody', array('user' => $user, 'nensya_url' => @$icon_url, 'nensya_sn' => $sn));
+		$this->load->view('foot', array('meta' => $meta, 'jss' => array(MODE_NENSYATTER . '_helper')));
 	}
 
 	/**

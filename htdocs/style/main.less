@@ -55,14 +55,42 @@ html,body {
 //    text-align: center;
 }
 
-#navbar {
-    .navbar-right {
-        margin-right: 10px;
+a {
+    color: green;
+}
+
+.btn-primary {
+    color: #ffffff;
+    background-color: #FFB13C;
+    border-color: #FFDB90;
+    &:hover {
+        background-color: #8F6D00;
+        border-color: #DD8E17;
     }
 }
 
+#navbar {
+    background: #FFCD74;
+    border-radius: 0 0 5px 5px;
+    a {
+        color: white;
+    }
+    .navbar-right {
+        margin-right: 10px;
+    }
+    li > img {
+        margin: 7px 0;
+        border: 2px solid white;
+        border-radius: 10px;
+    }
+}
+
+input[type=text] {
+    border: solid 2px #00EE69;
+}
+
 #footer {
-	position: relative;
+    position: relative;
 	margin-top: 0 - @footer_height;
 	height: @footer_height;
 	clear: both;
@@ -71,6 +99,9 @@ html,body {
 
     .row>div {
 
+    }
+    h3 {
+        margin-top: 0;
     }
     a {
         color: white;
@@ -131,19 +162,33 @@ html,body {
     padding-bottom: 24px;
 }
 
-.nensya {
-    line-height: 1em;
-    padding: 10px;
-    border: solid 1px;
-    box-shadow: 0 0 7px inset;
-    border-radius: 1em;
-    float: left;
+.nensyas {
+    >div {
+        overflow: auto;
+    }
+    .nensya {
+        line-height: 1em;
+        padding: 10px;
+        border: solid 1px;
+        box-shadow: 0 0 7px inset;
+        border-radius: 1em;
+        float: left;
 
-    &#result-b {
-        font-size: 10px;
+        &#result-b {
+            font-size: 10px;
+        }
+        &#result {
+        }
     }
-    &#result {
-    }
+}
+
+.btn-box {
+    margin: 10px;
+}
+
+#twitter-id-box {
+    margin-left: 5px;
+    margin-bottom: 10px;
 }
 
 // after import

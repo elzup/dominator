@@ -36,6 +36,8 @@ $is_pc = is_pc_viewport($this->input->server('HTTP_USER_AGENT'));
 				?>
 				<li>
 					<img src="<?= $user->img_url ?>" alt="アイコン">
+				</li>
+				<li>
 					<a <?= attr_href('//twitter.com/' . $user->screen_name, NULL, FALSE) ?>><?= $user->screen_name ?></a>
 				</li>
 				<li>

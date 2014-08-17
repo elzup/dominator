@@ -42,7 +42,6 @@ class User_model extends CI_Model {
 			$result = $connection->get('account/verify_credentials');
 			$img_url = @$result->profile_image_url;
 			$this->session->set_userdata('img_url', $img_url);
-			echo 'img_ loaded';
 		}
 
 		$this->user = new Userobj($connection, $id_twitter, $screen_name, $img_url);

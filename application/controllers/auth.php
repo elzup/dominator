@@ -6,7 +6,6 @@ class Auth extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->session->unset_userdata('userserial');
 	}
 
 	function Index()
@@ -54,14 +53,13 @@ class Auth extends CI_Controller
 		$this->session->set_userdata(array ('access_token_' . $mode => $access_token));
 		$ref = $this->session->userdata('referer');
 		$this->session->unset_userdata('referer');
-//		jump($mode == 'y' ? (ENVIRONMENT == 'development' ? '//localhost/elzup/htdocs/yopparatter' : URL_YOPPARATTER) : base_url());
 		jump($ref ? : base_url($mode));
 	}
 
 	function logout($mode = "")
 	{
-		$this->session->sess_destroy();
 		$ref = filter_input(INPUT_SERVER, 'HTTP_REFERER');
+		$this->session->sess_destroy();
 
 		jump($ref ? : base_url($mode));
 	}

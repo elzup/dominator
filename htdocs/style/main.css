@@ -11,8 +11,35 @@ body {
   height: 100%;
   padding-bottom: 170px;
 }
+a {
+  color: green;
+}
+.btn-primary {
+  color: #ffffff;
+  background-color: #FFB13C;
+  border-color: #FFDB90;
+}
+.btn-primary:hover {
+  background-color: #8F6D00;
+  border-color: #DD8E17;
+}
+#navbar {
+  background: #FFCD74;
+  border-radius: 0 0 5px 5px;
+}
+#navbar a {
+  color: white;
+}
 #navbar .navbar-right {
   margin-right: 10px;
+}
+#navbar li > img {
+  margin: 7px 0;
+  border: 2px solid white;
+  border-radius: 10px;
+}
+input[type=text] {
+  border: solid 2px #00EE69;
 }
 #footer {
   position: relative;
@@ -21,6 +48,9 @@ body {
   clear: both;
   padding-top: 20px;
   background-color: gray;
+}
+#footer h3 {
+  margin-top: 0;
 }
 #footer a {
   color: white;
@@ -61,7 +91,10 @@ body {
   border-bottom: solid black;
   padding-bottom: 24px;
 }
-.nensya {
+.nensyas > div {
+  overflow: auto;
+}
+.nensyas .nensya {
   line-height: 1em;
   padding: 10px;
   border: solid 1px;
@@ -69,8 +102,15 @@ body {
   border-radius: 1em;
   float: left;
 }
-.nensya#result-b {
+.nensyas .nensya#result-b {
   font-size: 10px;
+}
+.btn-box {
+  margin: 10px;
+}
+#twitter-id-box {
+  margin-left: 5px;
+  margin-bottom: 10px;
 }
 @media (max-width: 767px) {
   .slidebar-div .row {
