@@ -62,6 +62,7 @@ define('URL_YOPPARATTER_POST', '//app.elzup.com/' . MODE_YOPPARATTER . '/post');
 
 define('NAME_NENSYATTER', '念写ったー');
 define('URL_NENSYATTER', '//app.elzup.com/' . MODE_NENSYATTER);
+define('URL_SHARE_URL', 'app.elzup.com/nn/sn/');
 
 /* nensyatter config */
 

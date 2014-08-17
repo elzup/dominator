@@ -42,16 +42,16 @@
 				<div class="row btn-box">
 					<div class="col-lg-10 col-lg-offset-1">
 						<?php
-						$text = "{text}[@{$nensya_sn}]を念写しました";
+						$text = "{text}念写った〜 " . URL_SHARE_URL . $nensya_sn;
 						?>
-						<a id="share-btn-main" class="btn btn-primary btn-lg btn-block" href="<?= genete_share_url_twitter(current_url(), $text) ?>" target="_blank" style="display:none">ツイートする</a>
+						<a id="share-btn-main" class="btn btn-primary btn-lg btn-block" href="<?= genete_share_url_twitter(URL_SHARE_URL . $nensya_sn, $text) ?>" target="_blank" style="display:none">ツイートする</a>
 					</div>
 				</div>
 			<?php } ?>
 			<?php if ($user && (!isset($nensya_sn) || $user->screen_name != $nensya_sn)) { ?>
 				<a class="btn btn-primary" href="<?= base_url(MODE_NENSYATTER . '/sn/' . $user->screen_name) ?>">自分のアイコンを念写する</a>
 			<?php } ?>
-			<form action="<?= base_url(MODE_NENSYATTER . "/sn") ?>" class="form-horizontal" method="POST">
+			<form action="http:<?= base_url(MODE_NENSYATTER . "/sn") ?>" class="form-horizontal" method="POST">
 				<div class="form-group">
 					<div class="col-md-8">
 						<label for="sn" class="control-label">念写するTwitterID</label>

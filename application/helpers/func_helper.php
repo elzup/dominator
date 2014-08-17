@@ -277,6 +277,15 @@ if (!function_exists('chars_to_text')) {
 	}
 
 }
+if (!function_exists('exif_imagetype')) {
+	function exif_imagetype ($filename) {
+		preg_match('#\.(?<ext>[^.]*)$#', $filename, $m);
+		$ext = $m['ext'];
+		$lib = array('jpeg' => IMAGETYPE_JPEG, 'png' => IMAGETYPE_GIF, 'png' => IMAGETYPE_PNG);
+		return @$lib[$ext];
+	}
+}
+
 if (!function_exists('imagecreatefromex')) {
 
 	function imagecreatefromex($filename) {

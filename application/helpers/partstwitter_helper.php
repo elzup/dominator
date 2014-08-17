@@ -20,5 +20,5 @@ if (!function_exists('sharebtn_twitter'))
 }
 
 function genete_share_url_twitter($url, $text) {
-	return 'https://twitter.com/intent/tweet?original_referer=' . urlencode(current_url()) . '&text=' . urlencode($text) . ' &url=' . urlencode($url);
+	return 'https://twitter.com/intent/tweet?original_referer=' . urlencode(current_url()) . '&text=' . urlencode($text) . '&url=' . urlencode($url);
 }
