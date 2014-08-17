@@ -13,7 +13,7 @@
             console.log(data);
             $.ajax({
                 type: "POST",
-                url: "http://localhost/app.elzup/htdocs/nn/nensya", //PHPを呼び出す
+                url: "../nensya", //PHPを呼び出す
                 data: data, //記入されたデータを渡す
                 success: function(xml){
                     $(xml).find("item").each(function(){
@@ -44,7 +44,7 @@
 
         // カスタムボタン
         $("#custom-nensya").click(function() {
-            var url = $(this).attr('url') + '/' + $('#custom-nensya-num').val();
+            var url =  '../tx/' + $(this).attr('sn') + "/" + $('#custom-nensya-num').val();
             window.open(url);
         });
     });

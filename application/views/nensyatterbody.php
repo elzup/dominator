@@ -35,7 +35,7 @@
 					<div class="col-md-5">
 						<label class="control-label">カスタム念写</label>
 						１辺<input id="custom-nensya-num" type="number" max="30" min="1" value="20" />文字
-						<input class="btn btn-success" type="button" id="custom-nensya" url="<?= base_url(MODE_NENSYATTER . "/tx/" . $nensya_sn) ?>" value="念写">
+						<input class="btn btn-success" type="button" id="custom-nensya" sn="<?= $nensya_sn ?>" value="念写">
 					</div>
 				</div>
 
