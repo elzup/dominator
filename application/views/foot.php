@@ -18,8 +18,9 @@
 			<div class="col-sm-4">
 				<h3><a href="<?= base_url()?>">app.elzup.com</a></h3>
 				<ul>
-					<li><a href="<?= base_url(MODE_YOPPARATTER)?>">よっぱらった〜</a>
-					<li><a href="<?= base_url(MODE_NENSYATTER)?>">念写った〜</a>
+					<li><a href="<?= base_url(MODE_YOPPARATTER)?>"><?= NAME_YOPPARATTER ?></a>
+					<li><a href="<?= base_url(MODE_NENSYATTER)?>"><?= NAME_NENSYATTER ?></a>
+					<li><a href="<?= base_url(MODE_TOKIMIKUJI)?>"><?= NAME_TOKIMIKUJI ?></a>
 				</ul>
 			</div>
 			<div class="col-sm-4">

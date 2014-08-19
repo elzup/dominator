@@ -19,6 +19,14 @@
                 </div>
             </a>
         </div>
+        <div class="col-md-3">
+            <a href="<?= MODE_TOKIMIKUJI ?>">
+                <div class="app-box">
+                    <h3><?= NAME_TOKIMIKUJI ?></h3>
+					変わったおみくじ
+                </div>
+            </a>
+        </div>
     </div>
 </div>
 
