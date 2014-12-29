@@ -92,6 +92,17 @@ class Metaobj
 		$this->keywords = array('twitter,念写ったー,アイコン');
 	}
 
+	public function setup_psychopass()
+	{
+		$this->mode = MODE_PSYCHOPASS;
+		$this->url = base_url($this->mode);
+		$this->description = 'ドミネーター';
+		$this->type = 'website';
+		$this->set_title(NAME_PSYCHOPASS);
+		$this->share_text = NAME_PSYCHOPASS . ' - あなたは何色？';
+		$this->keywords = array('サイコパス,ドミネーター,Twitter');
+	}
+
 
 	/*
 	  public function setup_make()

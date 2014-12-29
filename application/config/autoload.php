@@ -55,6 +55,7 @@ $autoload['packages'] = array();
 $autoload['libraries'] = array(
 		'metaobj',
 		'userobj',
+		'userinfoobj',
 		'session',
 		'yopparai',
 );

@@ -1,5 +1,9 @@
 <?php 
 /* @var $meta Metaobj */
+$fr_js = PATH_LIB_BOOTSTRAP_JS;
+if (isset($is_foundationl)) {
+    $fr_js = PATH_LIB_FOUNDATION_JS;
+}
 ?>
 </div>
 </div>
@@ -16,11 +20,12 @@
 				</ul>
 			</div>
 			<div class="col-sm-4">
-				<h3><a href="<?= base_url()?>">app.elzup.com</a></h3>
+				<h3><a href="http://elzup.com">elzup.com</a></h3>
 				<ul>
 					<li><a href="<?= base_url(MODE_YOPPARATTER)?>"><?= NAME_YOPPARATTER ?></a>
 					<li><a href="<?= base_url(MODE_NENSYATTER)?>"><?= NAME_NENSYATTER ?></a>
 					<li><a href="<?= base_url(MODE_TOKIMIKUJI)?>"><?= NAME_TOKIMIKUJI ?></a>
+					<li><a href="<?= base_url(MODE_PSYCHOPASS)?>"><?= NAME_PSYCHOPASS ?></a>
 				</ul>
 			</div>
 			<div class="col-sm-4">
@@ -39,7 +44,7 @@
 <!-- LESS include -->
 <?= tag_script_js(base_url(PATH_LIB_LESS)); ?> 
 <!-- LESS Twitter bootstrap include -->
-<?= tag_script_js(base_url(PATH_LIB_BOOTSTRAP_JS)); ?> 
+<?= tag_script_js(base_url($fr_js)); ?> 
 <!-- Incliude Twitter share button widgets -->
 <?= tag_script_js(URL_TWITTER_WIDGETS); ?> 
 

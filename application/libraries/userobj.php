@@ -37,4 +37,11 @@ class Userobj {
 		return @$result->profile_image_url;
 	}
 
+    public function get_timeline() {
+        $param = array(
+            'count' => 200,
+        );
+		return $this->twitter_connection->get('statuses/home_timeline', $param);
+    }
+
 }

@@ -56,6 +56,7 @@ define('SITE_DESCRIPTION', 'えるざっぷ製あぷり');
 define('MODE_YOPPARATTER', 'yp');
 define('MODE_NENSYATTER', 'nn');
 define('MODE_TOKIMIKUJI', 'tk');
+define('MODE_PSYCHOPASS', 'psychopass');
 
 define('NAME_YOPPARATTER', 'ヨッパラッタ〜');
 define('URL_YOPPARATTER', '//app.elzup.com/' . MODE_YOPPARATTER);
@@ -67,6 +68,11 @@ define('URL_SHARE_URL', 'app.elzup.com/nn/sn/');
 
 define('NAME_TOKIMIKUJI', '時みくじ');
 define('URL_TOKIMIKUJI', '//app.elzup.com/' . MODE_TOKIMIKUJI);
+
+define('NAME_PSYCHOPASS', 'ドミネーター');
+define('URL_PSYCHOPASS', '//app.elzup.com/' . MODE_PSYCHOPASS);
+define('URL_SHARE_PSYCHOPASS_URL', 'app.elzup.com/');
+
 
 /* nensyatter config */
 
@@ -93,7 +99,13 @@ define('PATH_STYLE', 'style');
 define('PATH_LIB_BOOTSTRAP_JS', PATH_LIB . '/bootstrap/js/bootstrap.min.js');
 define('PATH_LIB_BOOTSTRAP_CSS', PATH_LIB . '/bootstrap/css/bootstrap.min.css');
 define('PATH_LIB_BOOTSTRAP_CSS2', PATH_LIB . '/bootstrap/css2/bootstrap.min.css');
+define('PATH_LIB_FOUNDATION_CSS', PATH_LIB . '/foundation/css/foundation.css');
+define('PATH_LIB_FOUNDATION_JS', PATH_LIB . '/foundation/js/foundation.min.js');
 define('PATH_LIB_LESS', PATH_LIB . '/less-1.3.3.min.js');
+define('PATH_LIB_PN_JP', PATH_LIB . '/pn_ja.dic');
+define('PATH_LIB_PN_EN', PATH_LIB . '/pn_en.dic');
+define('PATH_LIB_PN_JP_P', PATH_LIB . '/pn_ja_posi.dic');
+define('PATH_LIB_PN_EN_P', PATH_LIB . '/pn_en_posi.dic');
 
 define('PATH_IMG_LOADING', PATH_IMG . '/loading-l-3.gif');
 

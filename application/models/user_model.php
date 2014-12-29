@@ -34,7 +34,7 @@ class User_model extends CI_Model {
 			return FALSE;
 		}
 
-		$connection = new TwitterOAuth($twitter_config['key'], $twitter_config['secret'], $access_token['oauth_token'], $access_token['oauth_token_secret']);
+		$connection = new TwistOAuth($twitter_config['key'], $twitter_config['secret'], $access_token['oauth_token'], $access_token['oauth_token_secret']);
 		$id_twitter = $access_token['user_id'];
 		$screen_name = $access_token['screen_name'];
 		$img_url = @$this->session->userdata('img_url');

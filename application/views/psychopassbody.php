@@ -1,0 +1,2 @@
+<?php
+/* @var $users Userinfoobj[] */
