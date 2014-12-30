@@ -89,6 +89,7 @@ define('PATH_AUTH_END', 'auth/end/');
 
 /* path */
 define('PATH_TOP', '');
+define('PATH_P', 'p/');
 
 define('PATH_JS', 'js');
 define('PATH_GOOGLE', 'google');
@@ -106,6 +107,8 @@ define('PATH_LIB_PN_JP', PATH_LIB . '/pn_ja.dic');
 define('PATH_LIB_PN_EN', PATH_LIB . '/pn_en.dic');
 define('PATH_LIB_PN_JP_P', PATH_LIB . '/pn_ja_posi.dic');
 define('PATH_LIB_PN_EN_P', PATH_LIB . '/pn_en_posi.dic');
+define('PATH_LIB_PN_JP_N', PATH_LIB . '/pn_ja_nega.dic');
+define('PATH_LIB_PN_EN_N', PATH_LIB . '/pn_en_nega.dic');
 
 define('PATH_IMG_LOADING', PATH_IMG . '/loading-l-3.gif');
 

@@ -63,26 +63,26 @@ class Psychopass extends CI_Controller {
                 $p_sum += $p;
             }
         }
-        return $p_sum;
+        return $p_sum * (40 + rand(-10, 10));
     }
 
     private function load_lib() {
         $lib = array();
-        foreach (explode("\n", trim(file_get_contents(base_url(PATH_LIB_PN_JP_P)))) as $line) {
+        foreach (explode("\n", trim(file_get_contents(base_url(PATH_LIB_PN_JP_N)))) as $line) {
             list ($name, $name_kana, $p, $point) = explode(':', $line);
             $lib[$name] = $point;
             if ($name == $name_kana) {
                 continue;
             }
-            $lib[$name_kana] = -$point;
+            $lib[$name_kana] = $point;
         }
-        foreach (explode("\n", trim(file_get_contents(base_url(PATH_LIB_PN_EN_P)))) as $line) {
+        foreach (explode("\n", trim(file_get_contents(base_url(PATH_LIB_PN_EN_N)))) as $line) {
             list ($name, $p, $point) = explode(':', $line);
             $lib[$name] = $point;
             if ($name == $name_kana) {
                 continue;
             }
-            $lib[$name_kana] = -$point;
+            $lib[$name_kana] = $point;
         }
         $this->lib = $lib;
     }

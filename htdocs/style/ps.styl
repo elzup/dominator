@@ -15,5 +15,35 @@ h1
 img.eyecatch
   width 100%
 
+li 
+  list-style none
 
+user-box(i)
+  li
+    list-style circle
+  if i < 10
+    col = hsl(50 + 20 * i, 100%, 100% - (5 * i)%)
+  else if i < 30
+    col = hsl(300 + 3 * (i - 10), 60% - (i)%, 50% - (i)%)
+  else
+    col = hsl(0, 10% - (i / 10)%, 10% - (i / 10)%)
+  border-right solid 3px col
+  border-bottom solid 3px col
+  box-shadow inset (-4 - i * 0.05)px (-4 - i * 0.05)px (0.5 * i)px col
+  if i >= 30
+    color red
 
+.user
+  border 1px solid white
+  height 128px
+  .button
+    margin-right 10px
+  for i in 0..100
+    &.level-{i}
+      user-box i
+  ul
+    margin-left 30px
+
+form
+  input[type=submit]
+    margin-top 1.3em
