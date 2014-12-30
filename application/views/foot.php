@@ -21,11 +21,13 @@ if (isset($is_foundationl)) {
 			</div>
 			<div class="col-sm-4">
 				<h3><a href="http://elzup.com">elzup.com</a></h3>
-				<ul>
+				<ul class="">
+					<li><a href="http://areastress.cps.im.dendai.ac.jp/">東京エリアストレス</a>
+					<li><a href="<?= base_url(MODE_PSYCHOPASS)?>"><?= NAME_PSYCHOPASS ?></a>
+					<li><a href="http://ierukana.elzup.com">言えるかな？</a>
 					<li><a href="<?= base_url(MODE_YOPPARATTER)?>"><?= NAME_YOPPARATTER ?></a>
 					<li><a href="<?= base_url(MODE_NENSYATTER)?>"><?= NAME_NENSYATTER ?></a>
 					<li><a href="<?= base_url(MODE_TOKIMIKUJI)?>"><?= NAME_TOKIMIKUJI ?></a>
-					<li><a href="<?= base_url(MODE_PSYCHOPASS)?>"><?= NAME_PSYCHOPASS ?></a>
 				</ul>
 			</div>
 			<div class="col-sm-4">
