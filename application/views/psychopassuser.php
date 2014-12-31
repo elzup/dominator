@@ -5,16 +5,17 @@
     <div class="small-11 small-centered medium-10 medium-push-1">
         <h1>@<?= $user->screen_name ?>のサイコパス</h1>
         <div class="row user-on">
-            <div class="small-6 medium-4 columns">
+            <div class="small-4 medium-3 columns">
                 <img src="<?= $user->img_path ?>" alt="">
             </div>
-            <div class="small-6 medium-8 columns">
+            <div class="small-4 medium-6 columns">
                 <p>
                     <a href="//twitter.com/<?= $user->screen_name ?>" target="_blank">@<?= $user->screen_name ?></a>
                 </p>
                 <p>
-                    犯罪係数<span class="point"><?= $user->point ?></span><span class="col">■</span>
+                    犯罪係数<span class="point"><?= $user->point ?></span>
                 </p>
+                <div class="color" style="background: url(<?= base_url("./images/color.png") ?>) -<?= floor($user->point) ?>px 0;"></div>
             </div>
         </div>
     </div>

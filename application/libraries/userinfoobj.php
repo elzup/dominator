@@ -37,4 +37,5 @@ class Userinfoobj {
         $p = minmax($this->point, 0, 1000);
         return floor($p / 10);
     }
+
 }

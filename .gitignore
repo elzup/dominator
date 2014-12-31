@@ -14,5 +14,10 @@ plan/*
 !plan/todo.md
 test*
 
+*.css
+*.map
+*.js
+*.xcf
+
 *~*
 
