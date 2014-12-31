@@ -30,6 +30,7 @@ class Auth extends CI_Controller
 		$callback_uri = base_url(PATH_AUTH_END . $mode);
 
 		$connection = new TwitterOAuth($twitter_config['key'], $twitter_config['secret']);
+        $connection->host = "https://api.twitter.com/1.1/"; 
 		$request_token = $connection->getRequestToken($callback_uri);
 		$token = $request_token['oauth_token'];
 		$this->session->set_userdata(array(
@@ -44,9 +45,8 @@ class Auth extends CI_Controller
 	function end($mode = "")
 	{
 		// TODO: lookup referer and check is come from api.twitter.com
-		$connection = new TwitterOAuth(
-				$this->session->userdata('consumer_key'), $this->session->userdata('consumer_secret'), $this->session->userdata('oauth_token'), $this->session->userdata('oauth_token_secret')
-		);
+		$connection = new TwitterOAuth($this->session->userdata('consumer_key'), $this->session->userdata('consumer_secret'), $this->session->userdata('oauth_token'), $this->session->userdata('oauth_token_secret'));
+        $connection->host = "https://api.twitter.com/1.1/"; 
 		$access_token = $connection->getAccessToken($this->input->get('oauth_verifier'));
 		$this->session->unset_userdata('oauth_token');
 		$this->session->unset_userdata('oauth_token_secret');

@@ -19,6 +19,7 @@ class Userinfoobj {
         $this->user_id = $obj->id;
         $this->img_path = $obj->profile_image_url;
         $this->text = "";
+        $this->count = 0;
 	}
 
     public function add_str($text) {
@@ -27,7 +28,9 @@ class Userinfoobj {
     }
 
     public function set_point($point) {
-        $this->point = round($point / max(1, $this->count - 3), 2);
+        $len = mb_strlen($this->text);
+//        echo "<p>c:{$this->count} p: {$point} len: {$len}<br></p>";
+        $this->point = round($point / max(1, $this->count), 2);
     }
 
     public function get_point_level() {

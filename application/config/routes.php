@@ -48,6 +48,8 @@ $route['nn/(.*)']  = 'nensyatter/$1';
 $route['tk']  = 'tokimikuji';
 $route['tk/(.*)']  = 'tokimikuji/$1';
 
+$route['psychopass/(.*)']  = 'psychopass/p/$1';
+
 //$route['(:num)'] = 'survey/vote/$1';
 //$route['(:num)/(:num)'] = 'survey/vote/$1/$2';
 //$route['survey/(:num)'] = 'survey/vote/$1';

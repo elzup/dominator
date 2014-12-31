@@ -3,6 +3,7 @@
 col_main = #1D247F
 col_sub = #3B48FF
 col_back = col_main - #444
+col_link = #C0C5FF
 
 body, html
   background-color col_back
@@ -11,6 +12,10 @@ h1
   font-family 'Caudex', "Hiragino Kaku Gothic Pro W3", "ヒラギノ角ゴ Pro W3", "Meiryo", "メイリオ", "Noto Sans Japanese Regular", sans-serif !important
 .top-bar
   background-color col_sub
+
+a
+  &:hover
+    color col_link
 
 img.eyecatch
   width 100%
@@ -43,6 +48,12 @@ user-box(i)
       user-box i
   ul
     margin-left 30px
+
+.user-on
+  img
+    width 60%
+  .point, .col
+    font-size 4rem
 
 form
   input[type=submit]

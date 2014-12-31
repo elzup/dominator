@@ -4,12 +4,12 @@
 function user_box(Userinfoobj $user) {
     ?>
     <div class="user level-<?= $user->get_point_level() ?>">
-        <a href="<?= base_url(PATH_P . $user->screen_name) ?>">
+        <a href="<?= base_url(MODE_PSYCHOPASS . '/' . $user->screen_name) ?>">
             <img src="<?= $user->img_path ?>" alt="">
             <span class="button small right">執行</span>
         </a>
         <ul>
-            <!--<li class="name"><?= $user->name ?></li>-->
+            <!--<li class="name"><?= h($user->name) ?></li>-->
             <li class="screenname"><a href="//twitter.com/<?= $user->screen_name ?>" target="_blank">@<?= $user->screen_name ?></a></li>
             <li class="point">犯罪係数<?= $user->point ?></li>
         </ul>
@@ -20,11 +20,11 @@ function user_box(Userinfoobj $user) {
 ?>
 <div class="row">
     <div class="small-11 small-centered medium-10 medium-push-1">
-        <form mehtod="GET">
+        <form mehtod="GET" action="<?= base_url(MODE_PSYCHOPASS . '/' . PATH_P) ?>">
             <div class="row">
                 <div class="medium-8 columns">
                     <label>ユーザID
-                        <input type="text" placeholder="@arzzup" name="">
+                        <input type="text" placeholder="@arzzup" name="sn">
                     </label>
                 </div>
                 <div class="medium-4 columns">
