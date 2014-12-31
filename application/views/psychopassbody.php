@@ -11,7 +11,7 @@ function user_box(Userinfoobj $user) {
         <ul>
             <!--<li class="name"><?= h($user->name) ?></li>-->
             <li class="screenname"><a href="//twitter.com/<?= $user->screen_name ?>" target="_blank">@<?= $user->screen_name ?></a></li>
-            <li class="point">犯罪係数<?= $user->point ?></li>
+            <li class="point">犯罪係数<span class="point" data-sync-point="<?= $user->user_id ?>"></span></li>
         </ul>
     </div>
 

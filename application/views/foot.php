@@ -1,5 +1,6 @@
 <?php 
 /* @var $meta Metaobj */
+/* @var $jss string[] */
 $fr_js = PATH_LIB_BOOTSTRAP_JS;
 if (isset($is_foundationl)) {
     $fr_js = PATH_LIB_FOUNDATION_JS;

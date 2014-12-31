@@ -30,12 +30,19 @@ class Userinfoobj {
     public function set_point($point) {
         $len = mb_strlen($this->text);
 //        echo "<p>c:{$this->count} p: {$point} len: {$len}<br></p>";
-        $this->point = round($point / max(1, $this->count), 2);
+        $this->point = round($point / max(1, $this->count), 1);
     }
 
     public function get_point_level() {
         $p = minmax($this->point, 0, 1000);
         return floor($p / 10);
+    }
+
+    public function compact() {
+        unset($this->text);
+        unset($this->name);
+        unset($this->img_path);
+        unset($this->count);
     }
 
 }

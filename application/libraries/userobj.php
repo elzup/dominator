@@ -44,13 +44,17 @@ class Userobj {
         return $this->twitter_connection->get('statuses/home_timeline', $param);
     }
 
-    public function get_user_timeline($sn) {
+    public function get_user_timeline($sn, $is_user_id = FALSE) {
         $url = 'statuses/user_timeline';
 //        $query = 'statuses/user_timeline';
         $params = array(
-            'screen_name' => $sn,
-            'count' => 200,
+            'count' => 100,
         );
+        if ($is_user_id) {
+            $params['user_id'] = $sn;
+        } else {
+            $params['screen_name'] = $sn;
+        }
         $res = $this->twitter_connection->get($url, $params);
         return $res;
     }

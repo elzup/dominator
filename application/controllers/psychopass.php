@@ -22,17 +22,20 @@ class Psychopass extends CI_Controller {
         $this->load->view('alert', array('messages' => $messages));
         if (isset($user)) {
             $statuses = $user->get_timeline();
-            $users = $this->_analize($statuses);
+            $users = $this->_wrap_user($statuses);
             $this->load->view('psychopassbody', array('users' => $users));
         } else {
             $this->load->view('psychopasslogin');
         }
-        $this->load->view('foot', array('meta' => $meta, 'is_foundationl' => TRUE));
+        $this->load->view('foot', array('meta' => $meta, 'is_foundationl' => TRUE, 'jss' => array('ps_helper')));
     }
 
-    public function p($screen_name = NULL) {
+    public function p($screen_name = NULL, $arg2 = "") {
         if (($rsn = $this->input->get('sn'))) {
             redirect(base_url(MODE_PSYCHOPASS . '/' . $rsn));
+        }
+        if (isset($screen_name) && 'sync_point' === $screen_name && isset($arg2)) {
+            $this->sync_point($arg2);
         }
         $user = $this->user->get_user(MODE_PSYCHOPASS);
         $meta = new Metaobj();
@@ -50,6 +53,45 @@ class Psychopass extends CI_Controller {
             $this->load->view('psychopasslogin');
         }
         $this->load->view('foot', array('meta' => $meta, 'is_foundationl' => TRUE));
+        $statuses = $user->get_user_timeline($screen_name);
+        $user = array_pop($this->_analize($statuses));
+        $this->load->view('psychopassuser', array('user' => $user));
+    }
+
+    public function sync_point($user_ids) {
+        $user_id_list = explode(',', $user_ids);
+        $users = array();
+        if (!$user = $this->user->get_user(MODE_PSYCHOPASS)) {
+            $val = array();
+            $val['errors'] = 'no login error';
+            $this->load->view('json_value', array('value' => $val));
+            exit;
+        }
+        foreach ($user_id_list as $user_id) {
+            $statuses = $user->get_user_timeline($user_id, TRUE);
+            $u = $this->_analize_one($statuses);
+            $u->compact();
+            $users[] = $u;
+        }
+        $this->load->view('json_value', array('value' => $users));
+    }
+
+    private function _wrap_user($statuses) {
+        $users = array();
+        foreach ($statuses as $st) {
+            if (!isset($users[$st->user->id])) {
+                $users[$st->user->id] = new Userinfoobj($st->user);
+            }
+        }
+
+        usort($users, function(Userinfoobj $a, Userinfoobj $b) {
+            return $a->count > $b->count;
+        });
+        $users_select = array_slice($users, 0, 8);
+        foreach ($users_select as &$user) {
+            $user->set_point($this->negaposi($user->text));
+        }
+        return $users_select;
     }
 
     private function _analize($statuses) {
@@ -69,6 +111,19 @@ class Psychopass extends CI_Controller {
             $user->set_point($this->negaposi($user->text));
         }
         return $users;
+    }
+
+    private function _analize_one($statuses) {
+        $user = NULL;
+        foreach ($statuses as $st) {
+            if (!isset($user)) {
+                $user = new Userinfoobj($st->user);
+            }
+            $user->add_str($st->text);
+        }
+
+        $user->set_point($this->negaposi($user->text));
+        return $user;
     }
 
     private $lib;
