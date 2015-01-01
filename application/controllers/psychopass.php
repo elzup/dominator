@@ -54,26 +54,38 @@ class Psychopass extends CI_Controller {
         }
         $this->load->view('foot', array('meta' => $meta, 'is_foundationl' => TRUE));
         $statuses = $user->get_user_timeline($screen_name);
-        $user = array_pop($this->_analize($statuses));
-        $this->load->view('psychopassuser', array('user' => $user));
+        $u = array_pop($this->_analize($statuses));
+        $this->load->view('psychopassuser', array('user' => $u));
     }
 
-    public function sync_point($user_ids) {
-        $user_id_list = explode(',', $user_ids);
-        $users = array();
+    /** @var Twitter_user_Model */
+    public $userdb;
+
+    public function sync_point($user_id) {
+        $this->load->model('Twitter_user_model', 'userdb', TRUE);
         if (!$user = $this->user->get_user(MODE_PSYCHOPASS)) {
             $val = array();
             $val['errors'] = 'no login error';
             $this->load->view('json_value', array('value' => $val));
             exit;
         }
-        foreach ($user_id_list as $user_id) {
+        $reco = $this->userdb->load_user($user_id);
+        if (!$reco) {
+            // no user
             $statuses = $user->get_user_timeline($user_id, TRUE);
             $u = $this->_analize_one($statuses);
-            $u->compact();
-            $users[] = $u;
+            $this->userdb->regist_user($u);
+        } else {
+            $u = new Userinfoobj();
+            $u->set_user($reco);
+            if (!$u->is_recent()) {
+                $statuses = $user->get_user_timeline($user_id, TRUE);
+                $u = $this->_analize_one($statuses);
+                $this->userdb->update_user($u);
+            }
         }
-        $this->load->view('json_value', array('value' => $users));
+        $u->compact();
+        $this->load->view('json_value', array('value' => $u));
     }
 
     private function _wrap_user($statuses) {
@@ -174,6 +186,16 @@ class Psychopass extends CI_Controller {
             $messages[] = $posted;
         }
         return $messages;
+    }
+
+    public function migrate($version) {
+        $this->load->library('migration');
+
+        if ($this->migration->version($version)) {
+            log_message('error', 'Migration Success.');
+        } else {
+            log_message('error', $this->migration->error_string());
+        }
     }
 
 }

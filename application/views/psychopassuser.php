@@ -13,9 +13,9 @@
                     <a href="//twitter.com/<?= $user->screen_name ?>" target="_blank">@<?= $user->screen_name ?></a>
                 </p>
                 <p>
-                    犯罪係数<span class="point"><?= $user->point ?></span>
+                    犯罪係数<span class="point"><?= $user->score ?></span>
                 </p>
-                <div class="color" style="background: url(<?= base_url("./images/color.png") ?>) -<?= floor($user->point) ?>px 0;"></div>
+                <div class="color" style="background: url(<?= base_url("./images/color.png") ?>) -<?= floor($user->score) ?>px 0;"></div>
             </div>
         </div>
     </div>

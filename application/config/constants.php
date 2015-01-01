@@ -148,5 +148,13 @@ define('ICON_TARGET', 'fa fa-eye');
 define('ICON_AWARD', 'fa fa-trophy');
 define('ICON_LOGIN', 'fa fa-login');
 
+/** DB constants */
+define('DB_TN_USERS', 'users');
+define('DB_CN_USERS_USER_ID', 'user_id');
+define('DB_CN_USERS_TWITTER_USER_ID', 'twitter_user_id');
+define('DB_CN_USERS_PRE_SCORE', 'pre_score');
+define('DB_CN_USERS_MAX_SCORE', 'max_score');
+define('DB_CN_USERS_LAST_UPDATE', 'last_update');
+
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */

@@ -6,9 +6,13 @@ class Userinfoobj {
     public $screen_name;
     public $name;
     public $img_path;
-    public $point;
+    public $score;
     public $count;
     public $text;
+    public $pre_score;
+    public $max_score;
+
+    public $timestamp;
 
 	function __construct($obj = NULL) {
         if (!isset($obj)) {
@@ -20,7 +24,24 @@ class Userinfoobj {
         $this->img_path = $obj->profile_image_url;
         $this->text = "";
         $this->count = 0;
+        $this->max_score = 0;
 	}
+
+    public function set_user($obj) {
+        $this->user_id = $obj->user_id;
+        $this->pre_score = $obj->pre_score / 100;
+        $this->max_score = $obj->max_score / 100;
+        $this->timestamp = strtotime($obj->last_update);
+    }
+
+    /**
+     * 新鮮な記録かどうか
+     * 前回の記録から5分以内
+     * @return type
+     */
+    public function is_recent() {
+        return time() - $this->timestamp <= 60 * 5;
+    }
 
     public function add_str($text) {
         $this->count++;
@@ -30,11 +51,13 @@ class Userinfoobj {
     public function set_point($point) {
         $len = mb_strlen($this->text);
 //        echo "<p>c:{$this->count} p: {$point} len: {$len}<br></p>";
-        $this->point = round($point / max(1, $this->count), 1);
+        $this->score = round($point / max(1, $this->count), 1);
+        $this->pre_score = $this->score;
+        $this->max_score = max($this->max_score, $this->max_score);
     }
 
     public function get_point_level() {
-        $p = minmax($this->point, 0, 1000);
+        $p = minmax($this->score, 0, 1000);
         return floor($p / 10);
     }
 
