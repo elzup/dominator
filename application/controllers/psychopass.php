@@ -85,7 +85,7 @@ class Psychopass extends CI_Controller {
             }
         }
         $u->compact();
-        $this->load->view('json_value', array('value' => $u));
+        $this->load->view('json_value', array('value' => array($u)));
     }
 
     private function _wrap_user($statuses) {

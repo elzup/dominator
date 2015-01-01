@@ -28,8 +28,8 @@ class Userinfoobj {
 	}
 
     public function set_user($obj) {
-        $this->user_id = $obj->user_id;
-        $this->pre_score = $obj->pre_score / 100;
+        $this->user_id = $obj->twitter_user_id;
+        $this->score = $this->pre_score = $obj->pre_score / 100;
         $this->max_score = $obj->max_score / 100;
         $this->timestamp = strtotime($obj->last_update);
     }
@@ -53,7 +53,7 @@ class Userinfoobj {
 //        echo "<p>c:{$this->count} p: {$point} len: {$len}<br></p>";
         $this->score = round($point / max(1, $this->count), 1);
         $this->pre_score = $this->score;
-        $this->max_score = max($this->max_score, $this->max_score);
+        $this->max_score = max($this->max_score, $this->score);
     }
 
     public function get_point_level() {
