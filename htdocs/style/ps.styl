@@ -1,9 +1,9 @@
 @charset "utf-8"
 @import url(http://fonts.googleapis.com/css?family=Caudex);
-col_main = #1D247F
-col_sub = #3B48FF
-col_back = black
-col_link = #C0C5FF
+col_main = #1d247f
+col_sub = #2cabcc
+col_back = #08181c
+col_link = col_sub
 
 body, html
   background-color col_back
@@ -11,7 +11,7 @@ body, html
 h1
   font-family 'Caudex', "Hiragino Kaku Gothic Pro W3", "ヒラギノ角ゴ Pro W3", "Meiryo", "メイリオ", "Noto Sans Japanese Regular", sans-serif !important
 .top-bar
-  background-color #000444
+  background-color col_sub - #444
 
 a
   color col_link
@@ -21,6 +21,9 @@ img.eyecatch
 
 li 
   list-style none
+
+.button
+  background-color col_sub !important
 
 user-box(i)
   if i < 10

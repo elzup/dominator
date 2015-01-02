@@ -38,6 +38,9 @@ class Psychopass extends CI_Controller {
             $this->sync_point($arg2);
         }
         $user = $this->user->get_user(MODE_PSYCHOPASS);
+        if (!isset($user)) {
+            redirect(base_url(MODE_PSYCHOPASS . '/' . $rsn));
+        }
         $meta = new Metaobj();
         $meta->setup_psychopass();
         $messages = $this->_get_messages();

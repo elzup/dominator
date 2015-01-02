@@ -11,10 +11,9 @@ class Userinfoobj {
     public $text;
     public $pre_score;
     public $max_score;
-
     public $timestamp;
 
-	function __construct($obj = NULL) {
+    function __construct($obj = NULL) {
         if (!isset($obj)) {
             return;
         }
@@ -25,7 +24,7 @@ class Userinfoobj {
         $this->text = "";
         $this->count = 0;
         $this->max_score = 0;
-	}
+    }
 
     public function set_user($obj) {
         $this->user_id = $obj->twitter_user_id;
@@ -40,7 +39,7 @@ class Userinfoobj {
      * @return type
      */
     public function is_recent() {
-        return time() - $this->timestamp <= 60 * 5;
+        return time() - $this->timestamp <= 60 * PS_CACHE_TIME_MINITS;
     }
 
     public function add_str($text) {

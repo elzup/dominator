@@ -9,6 +9,7 @@ if (isset($is_foundationl)) {
 </div>
 </div>
 <div id="footer">
+<hr class="foot-hr">
 	<div class="container">
 		<div class="row">
 			<!--TODO: create footer-->

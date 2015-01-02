@@ -46,7 +46,6 @@ class Userobj {
 
     public function get_user_timeline($sn, $is_user_id = FALSE) {
         $url = 'statuses/user_timeline';
-//        $query = 'statuses/user_timeline';
         $params = array(
             'count' => 100,
         );

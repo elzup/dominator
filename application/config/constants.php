@@ -112,6 +112,10 @@ define('PATH_LIB_PN_EN_N', PATH_LIB . '/pn_en_nega.dic');
 
 define('PATH_IMG_LOADING', PATH_IMG . '/loading-l-3.gif');
 
+/* Psychopass config */
+define('PS_CACHE_TIME_MINITS', 5);
+
+
 /* online lib url */
 define('URL_TWITTER_WIDGETS', 'http://platform.twitter.com/widgets.js');
 define('URL_YAHOO_RESET_CSS', 'http://yui.yahooapis.com/3.0.0/build/cssreset/reset-min.css');
