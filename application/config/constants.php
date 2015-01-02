@@ -116,6 +116,8 @@ define('PATH_IMG_LOADING', PATH_IMG . '/loading-l-3.gif');
 define('PS_CACHE_TIME_MINITS', 10);
 define('PS_TOP_USER_NUM', 8);
 
+define('PS_DB_SHIFT', 10);
+
 
 /* online lib url */
 define('URL_TWITTER_WIDGETS', 'http://platform.twitter.com/widgets.js');

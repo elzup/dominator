@@ -44,7 +44,7 @@
 						<?php
 						$text = "{text}念写った〜 " . URL_SHARE_URL . $nensya_sn;
 						?>
-						<a id="share-btn-main" class="btn btn-primary btn-lg btn-block" href="<?= genete_share_url_twitter(URL_SHARE_URL . $nensya_sn, $text) ?>" target="_blank" style="display:none">ツイートする</a>
+						<a id="share-btn-main" class="btn btn-primary btn-lg btn-block" href="<?= generate_share_url_twitter(URL_SHARE_URL . $nensya_sn, $text) ?>" target="_blank" style="display:none">ツイートする</a>
 					</div>
 				</div>
 			<?php } ?>

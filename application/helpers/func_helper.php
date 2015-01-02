@@ -324,4 +324,5 @@ function generate_dominator_text($score, $screen_name) {
         $torigger_text = '執行対象です。執行モード、リーサル・エリミネーター。慎重に照準を定め対象を排除してください。';
     }
     $text = "@{$screen_name} [{$score}]『{$score_text} {$torigger_text}』";
+    return $text;
 }

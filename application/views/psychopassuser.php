@@ -7,35 +7,24 @@
         <div class="row user-on">
             <div class="small-4 medium-3 columns">
                 <img src="<?= $user->img_path ?>" alt="">
-            </div>
-            <div class="small-4 medium-6 columns">
                 <p>
                     <a href="//twitter.com/<?= $user->screen_name ?>" target="_blank">@<?= $user->screen_name ?></a>
                 </p>
+            </div>
+            <div class="small-4 medium-6 columns">
                 <p>
                     犯罪係数<span class="point"><?= $user->score ?></span>
                 </p>
                 <p>
                     最高犯罪係数<?= $user->max_score ?>
                 </p>
-                <div class="color" style="background: url(<?= base_url("./images/color.png") ?>) -<?= floor($user->score) ?>px 0;"></div>
+                <div class="color" style="background: url(<?= base_url("./images/color.png") ?>) <?= floor($user->score / 10) ?>% 0;"></div>
+            </div>
+            <div class="small-4 medium-3 columns">
+                <!--TODO:-->
+                <a href="<?= generate_share_url_twitter(current_url(), generate_dominator_text($user->score, $user->screen_name)) ?>" class="button large">執行する(ツイート)</a>
             </div>
         </div>
     </div>
 </div>
-<div class="row">
-    <div class="small-11 small-centered medium-10 medium-push-1">
-        <form mehtod="GET" action="<?= base_url(MODE_PSYCHOPASS . '/') ?>">
-            <div class="row">
-                <div class="medium-8 columns">
-                    <label>ユーザID
-                        <input type="text" placeholder="@arzzup" name="sn">
-                    </label>
-                </div>
-                <div class="medium-4 columns">
-                    <input class="button small" type="submit" value="ドミネーターを向ける">
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
+<?php $this->load->view('psychopassform'); ?>

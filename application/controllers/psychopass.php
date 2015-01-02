@@ -102,7 +102,9 @@ class Psychopass extends CI_Controller {
                 if (!isset($statuses)) {
                     $statuses = $user->get_user_timeline($user_id);
                 }
+                $u_pre = $u;
                 $u = $this->_analize_one($statuses);
+                $u->reflect_recent($u_pre);
                 $this->userdb->update_user($u);
             }
         }
