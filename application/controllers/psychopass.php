@@ -17,6 +17,9 @@ class Psychopass extends CI_Controller {
     }
 
     public function p($screen_name = NULL, $arg2 = "") {
+        if (!isset($screen_name)) {
+            redirect(base_url());
+        }
         if (($rsn = $this->input->get('sn'))) {
             redirect(base_url(PATH_P . $rsn));
         }
@@ -31,8 +34,8 @@ class Psychopass extends CI_Controller {
         $meta->setup_psychopass();
         $messages = $this->_get_messages();
 
-        $this->load->view('head_f', array('meta' => $meta, 'main_css' => 'ps'));
-        $this->load->view('navbar_f', array('meta' => $meta, 'user' => $user));
+        $this->load->view('head', array('meta' => $meta, 'main_css' => 'ps'));
+        $this->load->view('navbar', array('meta' => $meta, 'user' => $user));
         $this->load->view('alert', array('messages' => $messages));
         if (isset($user)) {
             $u = $this->get_twitter_user($user, $screen_name, TRUE);

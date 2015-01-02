@@ -1,10 +1,6 @@
 <?php 
 /* @var $meta Metaobj */
 /* @var $jss string[] */
-$fr_js = PATH_LIB_BOOTSTRAP_JS;
-if (isset($is_foundationl)) {
-    $fr_js = PATH_LIB_FOUNDATION_JS;
-}
 ?>
 </div>
 </div>
@@ -47,8 +43,8 @@ if (isset($is_foundationl)) {
 
 <!-- LESS include -->
 <?= tag_script_js(base_url(PATH_LIB_LESS)); ?> 
-<!-- LESS Twitter bootstrap include -->
-<?= tag_script_js(base_url($fr_js)); ?> 
+<!-- LESS Twitter foundation include -->
+<?= tag_script_js(base_url(PATH_LIB_FOUNDATION_JS)); ?> 
 <!-- Incliude Twitter share button widgets -->
 <?= tag_script_js(URL_TWITTER_WIDGETS); ?> 
 

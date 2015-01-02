@@ -21,8 +21,8 @@ class Index extends CI_Controller {
         $meta->setup_psychopass();
         $messages = $this->_get_messages();
 
-        $this->load->view('head_f', array('meta' => $meta, 'main_css' => 'ps'));
-        $this->load->view('navbar_f', array('meta' => $meta, 'user' => $user));
+        $this->load->view('head', array('meta' => $meta, 'main_css' => 'ps'));
+        $this->load->view('navbar', array('meta' => $meta, 'user' => $user));
         $this->load->view('alert', array('messages' => $messages));
         if (isset($user)) {
             $statuses = $user->get_timeline();

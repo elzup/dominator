@@ -53,7 +53,7 @@ class Auth extends CI_Controller
 		$this->session->set_userdata(array ('access_token_' . $mode => $access_token));
 		$ref = $this->session->userdata('referer');
 		$this->session->unset_userdata('referer');
-		jump($ref ? : base_url($mode));
+		jump($ref ? : base_url());
 	}
 
 	function logout($mode = "")
@@ -61,7 +61,7 @@ class Auth extends CI_Controller
 		$ref = filter_input(INPUT_SERVER, 'HTTP_REFERER');
 		$this->session->sess_destroy();
 
-		jump($ref ? : base_url($mode));
+		jump($ref ? : base_url());
 	}
 
 }

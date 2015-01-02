@@ -43,6 +43,7 @@ $route['404_override'] = '';
 
 $route['sync_point/([^/]+)']  = 'psychopass/sync_point/$1';
 $route['p/([^/]+)']  = 'psychopass/p/$1';
+$route['p']  = 'psychopass/p';
 
 //$route['(:num)'] = 'survey/vote/$1';
 //$route['(:num)/(:num)'] = 'survey/vote/$1/$2';
