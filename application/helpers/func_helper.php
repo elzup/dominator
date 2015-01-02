@@ -315,14 +315,16 @@ if (!function_exists('minmax')) {
 
 function generate_dominator_text($score, $screen_name) {
     $score_text = sprintf("%s%d", $score % 10 < 5 ? "オーバー" : "アンダー", round($score, -1));
-    $torigger_text = '、';
+    $torigger_text = "、@{$screen_name} は";
     if ($score < 100) {
-        $torigger_text = '執行対象ではありません。トリガーをロックします';
+        $torigger_text .= '執行対象ではありません。トリガーをロックします';
     } elseif ($score < 300) {
-        $torigger_text = '執行対象です。執行モード、ノンリーサル・パラライザー。落ち着いて照準を定め対象を制圧してください。';
+        $torigger_text .= '執行対象です。執行モード、ノンリーサル・パラライザー。落ち着いて照準を定め対象を制圧してください';
     } elseif ($score < 600) {
-        $torigger_text = '執行対象です。執行モード、リーサル・エリミネーター。慎重に照準を定め対象を排除してください。';
+        $torigger_text .= '執行対象です。執行モード、リーサル・エリミネーター。慎重に照準を定め対象を排除してください';
+    } else {
+        $torigger_text .= '執行対象です。執行モード、デストロイ・デコンポーザー。対象を完全排除します。ご注意ください';
     }
-    $text = "@{$screen_name} [{$score}]『{$score_text} {$torigger_text}』";
+    $text = "犯罪係数{$score_text} {$torigger_text} #dominator";
     return $text;
 }

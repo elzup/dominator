@@ -40,15 +40,9 @@
 
 $route['default_controller'] = "index";
 $route['404_override'] = '';
-$route['yp']  = 'yopparatter';
-$route['yp/(.*)']  = 'yopparatter/$1';
-$route['nn']  = 'nensyatter';
-$route['nn/(.*)']  = 'nensyatter/$1';
 
-$route['tk']  = 'tokimikuji';
-$route['tk/(.*)']  = 'tokimikuji/$1';
-
-$route['psychopass/([^/]+)']  = 'psychopass/p/$1';
+$route['sync_point/([^/]+)']  = 'psychopass/sync_point/$1';
+$route['p/([^/]+)']  = 'psychopass/p/$1';
 
 //$route['(:num)'] = 'survey/vote/$1';
 //$route['(:num)/(:num)'] = 'survey/vote/$1/$2';

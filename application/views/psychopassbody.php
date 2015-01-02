@@ -4,11 +4,11 @@
 function user_box(Userinfoobj $user) {
     ?>
     <div class="user">
-        <a href="<?= base_url(MODE_PSYCHOPASS . '/' . $user->screen_name) ?>">
+        <a href="<?= base_url(PATH_P . $user->screen_name) ?>">
             <img src="<?= $user->img_path ?>" alt="">
         </a>
         <span class="screenname"><a href="//twitter.com/<?= $user->screen_name ?>" target="_blank">@<?= $user->screen_name ?></a></span>
-        <a class="button expand jump" href="<?= base_url(MODE_PSYCHOPASS . '/' . $user->screen_name) ?>">
+        <a class="button expand jump" href="<?= base_url(PATH_P . $user->screen_name) ?>">
             執行する
         </a>
             <!--<li class="name"><?= h($user->name) ?></li>-->

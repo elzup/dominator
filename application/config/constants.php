@@ -70,7 +70,7 @@ define('NAME_TOKIMIKUJI', '時みくじ');
 define('URL_TOKIMIKUJI', '//app.elzup.com/' . MODE_TOKIMIKUJI);
 
 define('NAME_PSYCHOPASS', 'ドミネーター');
-define('URL_PSYCHOPASS', '//app.elzup.com/' . MODE_PSYCHOPASS);
+define('URL_PSYCHOPASS', '//dominator.elzup.com/');
 define('URL_SHARE_PSYCHOPASS_URL', 'app.elzup.com/');
 
 

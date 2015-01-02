@@ -13,37 +13,19 @@ class Psychopass extends CI_Controller {
     }
 
     public function index() {
-        if (($rsn = $this->input->get('sn'))) {
-            redirect(base_url(MODE_PSYCHOPASS . '/' . $rsn));
-        }
-        $user = $this->user->get_user(MODE_PSYCHOPASS);
-        $meta = new Metaobj();
-        $meta->setup_psychopass();
-        $messages = $this->_get_messages();
-
-        $this->load->view('head_f', array('meta' => $meta, 'main_css' => 'ps'));
-        $this->load->view('navbar_f', array('meta' => $meta, 'user' => $user));
-        $this->load->view('alert', array('messages' => $messages));
-        if (isset($user)) {
-            $statuses = $user->get_timeline();
-            $users = $this->_wrap_user($statuses);
-            $this->load->view('psychopassbody', array('users' => $users));
-        } else {
-            $this->load->view('psychopasslogin');
-        }
-        $this->load->view('foot', array('meta' => $meta, 'is_foundationl' => TRUE, 'jss' => array('ps_helper')));
+        redirect(base_url());
     }
 
     public function p($screen_name = NULL, $arg2 = "") {
         if (($rsn = $this->input->get('sn'))) {
-            redirect(base_url(MODE_PSYCHOPASS . '/' . $rsn));
+            redirect(base_url(PATH_P . $rsn));
         }
         if (isset($screen_name) && 'sync_point' === $screen_name && isset($arg2)) {
             $this->sync_point($arg2);
         }
         $user = $this->user->get_user(MODE_PSYCHOPASS);
         if (!isset($user)) {
-            redirect(base_url(MODE_PSYCHOPASS . '/' . $rsn));
+            redirect(base_url(PATH_P . $rsn));
         }
         $meta = new Metaobj();
         $meta->setup_psychopass();

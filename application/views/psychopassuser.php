@@ -22,7 +22,7 @@
             </div>
             <div class="small-4 medium-3 columns">
                 <!--TODO:-->
-                <a href="<?= generate_share_url_twitter(current_url(), generate_dominator_text($user->score, $user->screen_name)) ?>" class="button large">執行する(ツイート)</a>
+                <a href="<?= generate_share_url_twitter(current_url(), generate_dominator_text($user->score, $user->screen_name)) ?>" class="button large">執行する<br>(ツイート)</a>
             </div>
         </div>
     </div>
