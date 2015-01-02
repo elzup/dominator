@@ -6,13 +6,13 @@ function user_box(Userinfoobj $user) {
     <div class="user">
         <a href="<?= base_url(MODE_PSYCHOPASS . '/' . $user->screen_name) ?>">
             <img src="<?= $user->img_path ?>" alt="">
-            <span class="button small right">執行する</span>
         </a>
-        <ul>
+        <span class="screenname"><a href="//twitter.com/<?= $user->screen_name ?>" target="_blank">@<?= $user->screen_name ?></a></span>
+        <a class="button expand jump" href="<?= base_url(MODE_PSYCHOPASS . '/' . $user->screen_name) ?>">
+            執行する
+        </a>
             <!--<li class="name"><?= h($user->name) ?></li>-->
-            <li class="screenname"><a href="//twitter.com/<?= $user->screen_name ?>" target="_blank">@<?= $user->screen_name ?></a></li>
-            <li class="point">犯罪係数<span class="point" data-sync-point="<?= $user->user_id ?>"><img class="loading" src="<?= base_url(PATH_IMG . '/loading.gif') ?>" alt=""></span></li>
-        </ul>
+        <p class="point">犯罪係数<span class="point" data-sync-point="<?= $user->user_id ?>"><img class="loading" src="<?= base_url(PATH_IMG . '/loading.gif') ?>" alt=""></span></p>
     </div>
 
     <?php

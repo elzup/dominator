@@ -40,23 +40,22 @@ user-box(i)
 
 .user
   border 1px solid white
+  padding 2px
   .button
     margin-right 10px
   for i in 0..100
     &.level-{i}
       user-box i
-  ul
+  .jump
+    margin-top 2px
+  p
+    .point
+      font-size 1.5rem
+      font-style italic
+      font-weight 800
+  .loading
+    width 40%
     margin-left 10px
-    li
-      clear both
-      overflow hidden
-      .point
-        font-size 1.5rem
-        font-style italic
-        font-weight 800
-      .loading
-        width 40%
-        margin-left 10px
 
 
 .user-on
