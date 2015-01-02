@@ -15,6 +15,9 @@
                 <p>
                     犯罪係数<span class="point"><?= $user->score ?></span>
                 </p>
+                <p>
+                    最高犯罪係数<?= $user->max_score ?>
+                </p>
                 <div class="color" style="background: url(<?= base_url("./images/color.png") ?>) -<?= floor($user->score) ?>px 0;"></div>
             </div>
         </div>

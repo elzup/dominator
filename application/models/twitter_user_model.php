@@ -20,8 +20,8 @@ class Twitter_user_model extends CI_Model {
     }
 
     public function update_user(Userinfoobj $user) {
-        $this->db->set(DB_CN_USERS_PRE_SCORE, $user->pre_score);
-        $this->db->set(DB_CN_USERS_MAX_SCORE, $user->max_score);
+        $this->db->set(DB_CN_USERS_PRE_SCORE, $user->pre_score * 100);
+        $this->db->set(DB_CN_USERS_MAX_SCORE, $user->max_score * 100);
         $this->db->where(DB_CN_USERS_TWITTER_USER_ID, $user->user_id);
         $this->db->update(DB_TN_USERS);
     }

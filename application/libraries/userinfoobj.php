@@ -33,6 +33,13 @@ class Userinfoobj {
         $this->timestamp = strtotime($obj->last_update);
     }
 
+    public function support_user($obj) {
+        $this->screen_name = $obj->screen_name;
+        $this->name = $obj->name;
+        $this->user_id = $obj->id;
+        $this->img_path = $obj->profile_image_url;
+    }
+
     /**
      * 新鮮な記録かどうか
      * 前回の記録から5分以内

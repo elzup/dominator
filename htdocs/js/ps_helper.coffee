@@ -10,7 +10,7 @@ $ ->
         console.log res[0]
         console.log res[0].score
         console.log "[data-sync-point=" + res[0].user_id + "]"
-        $("[data-sync-point=" + res[0].user_id + "]").html(res[0].score)
+        $("[data-sync-point=" + res[0].user_id + "]").html(res[0].score.toFixed(1))
       error: ->
         console.log 'result post error'
     )

@@ -312,3 +312,16 @@ if (!function_exists('minmax')) {
     }
 
 }
+
+function generate_dominator_text($score, $screen_name) {
+    $score_text = sprintf("%s%d", $score % 10 < 5 ? "オーバー" : "アンダー", round($score, -1));
+    $torigger_text = '、';
+    if ($score < 100) {
+        $torigger_text = '執行対象ではありません。トリガーをロックします';
+    } elseif ($score < 300) {
+        $torigger_text = '執行対象です。執行モード、ノンリーサル・パラライザー。落ち着いて照準を定め対象を制圧してください。';
+    } elseif ($score < 600) {
+        $torigger_text = '執行対象です。執行モード、リーサル・エリミネーター。慎重に照準を定め対象を排除してください。';
+    }
+    $text = "@{$screen_name} [{$score}]『{$score_text} {$torigger_text}』";
+}

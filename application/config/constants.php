@@ -113,7 +113,8 @@ define('PATH_LIB_PN_EN_N', PATH_LIB . '/pn_en_nega.dic');
 define('PATH_IMG_LOADING', PATH_IMG . '/loading-l-3.gif');
 
 /* Psychopass config */
-define('PS_CACHE_TIME_MINITS', 5);
+define('PS_CACHE_TIME_MINITS', 10);
+define('PS_TOP_USER_NUM', 8);
 
 
 /* online lib url */

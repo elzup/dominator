@@ -9,9 +9,13 @@ class Psychopass extends CI_Controller {
         parent::__construct();
         $this->load->model('User_model', 'user');
         $this->user->set_check_login(MODE_PSYCHOPASS);
+        $this->load->model('Twitter_user_model', 'userdb', TRUE);
     }
 
     public function index() {
+        if (($rsn = $this->input->get('sn'))) {
+            redirect(base_url(MODE_PSYCHOPASS . '/' . $rsn));
+        }
         $user = $this->user->get_user(MODE_PSYCHOPASS);
         $meta = new Metaobj();
         $meta->setup_psychopass();
@@ -49,46 +53,63 @@ class Psychopass extends CI_Controller {
         $this->load->view('navbar_f', array('meta' => $meta, 'user' => $user));
         $this->load->view('alert', array('messages' => $messages));
         if (isset($user)) {
-            $statuses = $user->get_user_timeline($screen_name);
-            $user = array_pop($this->_analize($statuses));
-            $this->load->view('psychopassuser', array('user' => $user));
+            $u = $this->get_twitter_user($user, $screen_name, TRUE);
+            $this->load->view('psychopassuser', array('user' => $u));
         } else {
             $this->load->view('psychopasslogin');
         }
         $this->load->view('foot', array('meta' => $meta, 'is_foundationl' => TRUE));
-        $statuses = $user->get_user_timeline($screen_name);
-        $u = array_pop($this->_analize($statuses));
-        $this->load->view('psychopassuser', array('user' => $u));
     }
 
     /** @var Twitter_user_Model */
     public $userdb;
 
     public function sync_point($user_id) {
-        $this->load->model('Twitter_user_model', 'userdb', TRUE);
         if (!$user = $this->user->get_user(MODE_PSYCHOPASS)) {
             $val = array();
             $val['errors'] = 'no login error';
             $this->load->view('json_value', array('value' => $val));
             exit;
         }
+        $u = $this->get_twitter_user($user, $user_id);
+        $u->compact();
+        $this->load->view('json_value', array('value' => array($u)));
+    }
+
+    /**
+     * 
+     * @param type $user_id
+     * @param type $is_screen_name
+     * @return Userinfoobj
+     */
+    private function get_twitter_user(Userobj $user, $user_id, $is_screen_name = FALSE) {
+        if ($is_screen_name) {
+            $statuses = $user->get_user_timeline($user_id, TRUE);
+            $user_id = $statuses[0]->user->id;
+        }
         $reco = $this->userdb->load_user($user_id);
         if (!$reco) {
             // no user
-            $statuses = $user->get_user_timeline($user_id, TRUE);
+            if (!isset($statuses)) {
+                $statuses = $user->get_user_timeline($user_id);
+            }
             $u = $this->_analize_one($statuses);
             $this->userdb->regist_user($u);
         } else {
             $u = new Userinfoobj();
             $u->set_user($reco);
             if (!$u->is_recent()) {
-                $statuses = $user->get_user_timeline($user_id, TRUE);
+                if (!isset($statuses)) {
+                    $statuses = $user->get_user_timeline($user_id);
+                }
                 $u = $this->_analize_one($statuses);
                 $this->userdb->update_user($u);
             }
         }
-        $u->compact();
-        $this->load->view('json_value', array('value' => array($u)));
+        if ($is_screen_name) {
+            $u->support_user($statuses[0]->user);
+        }
+        return $u;
     }
 
     private function _wrap_user($statuses) {
@@ -102,7 +123,7 @@ class Psychopass extends CI_Controller {
         usort($users, function(Userinfoobj $a, Userinfoobj $b) {
             return $a->count > $b->count;
         });
-        $users_select = array_slice($users, 0, 8);
+        $users_select = array_slice($users, 0, PS_TOP_USER_NUM);
         foreach ($users_select as &$user) {
             $user->set_point($this->negaposi($user->text));
         }
