@@ -51,7 +51,7 @@ class Userobj {
     public function get_user_timeline($sn, $is_screen_name = FALSE) {
         $url = 'statuses/user_timeline';
         $params = array(
-            'count' => 100,
+            'count' => 200,
         );
         if ($is_screen_name) {
             $params['screen_name'] = $sn;

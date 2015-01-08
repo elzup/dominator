@@ -75,6 +75,7 @@ class Psychopass extends CI_Controller {
     }
 
     public function get_point() {
+        
     }
 
     /**
@@ -119,62 +120,42 @@ class Psychopass extends CI_Controller {
         return $u;
     }
 
-    private function _wrap_user($statuses) {
-        $users = array();
-        foreach ($statuses as $st) {
-            if (!isset($users[$st->user->id])) {
-                $users[$st->user->id] = new Userinfoobj($st->user);
-            }
-        }
-
-        usort($users, function(Userinfoobj $a, Userinfoobj $b) {
-            return $a->count > $b->count;
-        });
-        $users_select = array_slice($users, 0, PS_TOP_USER_NUM);
-        foreach ($users_select as &$user) {
-            $user->set_point($this->negaposi($user->text));
-        }
-        return $users_select;
-    }
-
     private function _analize_one($statuses) {
         $user = NULL;
+        $igo = new Igo(PATH_LIB_IGO_DICT);
+
+        $words = array();
         foreach ($statuses as $st) {
             if (!isset($user)) {
                 $user = new Userinfoobj($st->user);
             }
-            $user->add_str($st->text);
+            $words = array_merge($words, $igo->wakati($st->text));
         }
 
-        echo '<pre>';
-        $p = $this->negaposi($user->text);
-        echo "P: $p\n";
+        $p = $this->negaposi($words);
         $user->set_point($p);
-        exit;
         return $user;
     }
 
     private $lib;
 
-    private function negaposi($text) {
+    private function negaposi($words) {
+
         if (!isset($this->lib)) {
             $this->load_lib();
         }
-        echo $text;
-        echo PHP_EOL;
+
+        ini_set('memory_limit','16M');
+        echo serialize($this->lib);
+        exit;
+
         $p_sum = 0;
-        foreach ($this->lib as $k => $p) {
-            if (empty($k)) {
-                continue;
+        foreach ($words as $w) {
+            if (isset($this->lib[$w])) {
+                $p_sum += $this->lib[$w];
             }
-            $c = mb_substr_count($text, $k, 'UTF-8');
-            if ($c == 0) {
-                continue;
-            }
-            echo "[{$c}] {$k} {$p}\n";
-            $p_sum += $c * $p * 10;
         }
-        return $p_sum * (4 + rand(-10, 10) / 10);
+        return $p_sum * 100;
     }
 
     private function load_lib() {
