@@ -137,25 +137,6 @@ class Psychopass extends CI_Controller {
         return $users_select;
     }
 
-    private function _analize($statuses) {
-        $users = array();
-        foreach ($statuses as $st) {
-            if (!isset($users[$st->user->id])) {
-                $users[$st->user->id] = new Userinfoobj($st->user);
-            }
-            $users[$st->user->id]->add_str($st->text);
-        }
-
-        foreach ($users as $k => &$user) {
-            if ($user->count <= 5) {
-                unset($users[$k]);
-                continue;
-            }
-            $user->set_point($this->negaposi($user->text));
-        }
-        return $users;
-    }
-
     private function _analize_one($statuses) {
         $user = NULL;
         foreach ($statuses as $st) {
@@ -165,7 +146,11 @@ class Psychopass extends CI_Controller {
             $user->add_str($st->text);
         }
 
-        $user->set_point($this->negaposi($user->text));
+        echo '<pre>';
+        $p = $this->negaposi($user->text);
+        echo "P: $p\n";
+        $user->set_point($p);
+        exit;
         return $user;
     }
 
@@ -175,14 +160,21 @@ class Psychopass extends CI_Controller {
         if (!isset($this->lib)) {
             $this->load_lib();
         }
+        echo $text;
+        echo PHP_EOL;
         $p_sum = 0;
         foreach ($this->lib as $k => $p) {
             if (empty($k)) {
                 continue;
             }
-            $p_sum += mb_substr_count($text, $k, 'UTF-8');
+            $c = mb_substr_count($text, $k, 'UTF-8');
+            if ($c == 0) {
+                continue;
+            }
+            echo "[{$c}] {$k} {$p}\n";
+            $p_sum += $c * $p * 10;
         }
-        return $p_sum * (40 + rand(-10, 10));
+        return $p_sum * (4 + rand(-10, 10) / 10);
     }
 
     private function load_lib() {

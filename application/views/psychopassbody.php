@@ -23,13 +23,18 @@ $this->load->view('psychopassform');
 <div class="row">
     <div class="small-11 small-centered medium-10 medium-push-1">
         <h3>現在のあなたのTLにいるフレンド</h3>
-        <ul class="small-block-grid-2 medium-block-grid-4">
-            <?php
-            foreach ($users as $user) {
-                echo '<li>';
-                user_box($user);
-                echo '</li>';
-            }
-            ?>
+        <?php if ($users !== FALSE) { ?>
+            <ul class="small-block-grid-2 medium-block-grid-4">
+                <?php
+                foreach ($users as $user) {
+                    echo '<li>';
+                    user_box($user);
+                    echo '</li>';
+                }
+                ?>
+            </ul>
+        <?php } else { ?>
+            <h4>TL が読み込めません Twitter制限</h4>
+        <?php } ?>
     </div>
 </div>

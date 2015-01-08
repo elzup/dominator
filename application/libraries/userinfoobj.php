@@ -23,6 +23,8 @@ class Userinfoobj {
         $this->img_path = $obj->profile_image_url;
         $this->text = "";
         $this->count = 0;
+        $this->score = 0;
+        $this->pre_score = 0;
         $this->max_score = 0;
     }
 

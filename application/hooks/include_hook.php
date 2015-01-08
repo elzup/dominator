@@ -12,6 +12,7 @@ class Include_hook
 		include_once(FCPATH . LIBPATH . 'twitteroauth.php');
 		include_once(FCPATH . LIBPATH . 'TwistOAuth.php');
 		include_once(FCPATH . LIBPATH . 'colors.inc.php');
+		include_once(FCPATH . LIBPATH . 'Igo.php');
 	}
 
 }

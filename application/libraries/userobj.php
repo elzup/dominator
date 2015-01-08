@@ -41,7 +41,11 @@ class Userobj {
         $param = array(
             'count' => 200,
         );
-        return $this->twitter_connection->get('statuses/home_timeline', $param);
+        $res = $this->twitter_connection->get('statuses/home_timeline', $param);
+        if (isset($res->errors)) {
+            return FALSE;
+        }
+        return $res;
     }
 
     public function get_user_timeline($sn, $is_screen_name = FALSE) {

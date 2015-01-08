@@ -107,8 +107,10 @@ define('PATH_LIB_PN_JP_P', PATH_LIB . '/pn_ja_posi.dic');
 define('PATH_LIB_PN_EN_P', PATH_LIB . '/pn_en_posi.dic');
 define('PATH_LIB_PN_JP_N', PATH_LIB . '/pn_ja_nega.dic');
 define('PATH_LIB_PN_EN_N', PATH_LIB . '/pn_en_nega.dic');
+define('PATH_LIB_IGO_DICT', PATH_LIB . '/ipadic');
 
 define('PATH_IMG_LOADING', PATH_IMG . '/loading-l-3.gif');
+
 
 /* Psychopass config */
 define('PS_CACHE_TIME_MINITS', 10);

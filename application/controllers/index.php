@@ -26,7 +26,11 @@ class Index extends CI_Controller {
         $this->load->view('alert', array('messages' => $messages));
         if (isset($user)) {
             $statuses = $user->get_timeline();
-            $users = $this->_wrap_user($statuses);
+            if ($statuses !== FALSE) {
+                $users = $this->_wrap_user($statuses);
+            } else {
+                $users = FALSE;
+            }
             $this->load->view('psychopassbody', array('users' => $users));
         } else {
             $this->load->view('psychopasslogin');
@@ -84,9 +88,12 @@ class Index extends CI_Controller {
             return $a->count > $b->count;
         });
         $users_select = array_slice($users, 0, PS_TOP_USER_NUM);
-        foreach ($users_select as &$user) {
-            $user->set_point($this->negaposi($user->text));
-        }
+//        foreach ($users_select as &$user) {
+//            $p = $this->negaposi($user->text);
+//            echo 'P: ' . $p ;
+//            $user->set_point($p);
+//            var_dump($user);
+//        }
         return $users_select;
     }
 
