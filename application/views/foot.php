@@ -1,6 +1,7 @@
 <?php 
 /* @var $meta Metaobj */
 /* @var $jss string[] */
+/* @var $redirect_url string */
 ?>
 </div>
 </div>
@@ -52,7 +53,15 @@
 <?= tag_script_js(base_url(PATH_JS.'/helper.js')); ?>
 
 <?= tag_script_js(base_url(PATH_LIB. '/bootstrap/js/bootstrap-slider.js'))?>
+<?php if (isset($redirect_url)) { ?>
+<script>
+    $(function() {
+        window.location = "<?= $redirect_url ?>";
+    });
+</script>
+<?php } ?>
 
+        
 <?php
 if (!empty($jss))
 {

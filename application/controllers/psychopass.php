@@ -16,19 +16,32 @@ class Psychopass extends CI_Controller {
         redirect(base_url());
     }
 
+    public function p_pre($screen_name = NULL, $arg2 = "") {
+        $user = $this->user->get_user(MODE_PSYCHOPASS);
+        if (!isset($user)) {
+            redirect(base_url());
+        }
+        $meta = new Metaobj();
+        $meta->set_title('ロード中');
+        $this->load->view('head', array('meta' => $meta, 'main_css' => 'ps'));
+        $this->load->view('navbar', array('meta' => $meta, 'user' => $user));
+        $this->load->view('loading');
+        $this->load->view('foot', array('meta' => $meta, 'is_foundationl' => TRUE, 'redirect_url' => base_url(PATH_P . $screen_name . '/' . $arg2)));
+    }
+
     public function p($screen_name = NULL, $arg2 = "") {
         if (!isset($screen_name)) {
             redirect(base_url());
         }
         if (($rsn = $this->input->get('sn'))) {
-            redirect(base_url(PATH_P . $rsn));
+            redirect(base_url(PATH_P_PRE . $rsn));
         }
         if (isset($screen_name) && 'sync_point' === $screen_name && isset($arg2)) {
             $this->sync_point($arg2);
         }
         $user = $this->user->get_user(MODE_PSYCHOPASS);
         if (!isset($user)) {
-            redirect(base_url(PATH_P . $rsn));
+            redirect(base_url(PATH_P_PRE . $rsn));
         }
         $meta = new Metaobj();
         $meta->setup_psychopass();
@@ -61,6 +74,9 @@ class Psychopass extends CI_Controller {
         $this->load->view('json_value', array('value' => array($u)));
     }
 
+    public function get_point() {
+    }
+
     /**
      * 
      * @param type $user_id
@@ -70,6 +86,10 @@ class Psychopass extends CI_Controller {
     private function get_twitter_user(Userobj $user, $user_id, $is_screen_name = FALSE) {
         if ($is_screen_name) {
             $statuses = $user->get_user_timeline($user_id, TRUE);
+//            var_dump($statuses);
+            if ($statuses === FALSE) {
+                return NULL;
+            }
             $user_id = $statuses[0]->user->id;
         }
         $reco = $this->userdb->load_user($user_id);

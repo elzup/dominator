@@ -14,7 +14,7 @@ class Index extends CI_Controller {
 
     public function index() {
         if (($rsn = $this->input->get('sn'))) {
-            redirect(base_url(PATH_P . $rsn));
+            redirect(base_url(PATH_P_PRE . $rsn));
         }
         $user = $this->user->get_user(MODE_PSYCHOPASS);
         $meta = new Metaobj();

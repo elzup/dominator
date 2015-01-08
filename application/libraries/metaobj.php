@@ -103,7 +103,6 @@ class Metaobj
 		$this->keywords = array('サイコパス,ドミネーター,Twitter');
 	}
 
-
 	/*
 	  public function setup_make()
 	  {

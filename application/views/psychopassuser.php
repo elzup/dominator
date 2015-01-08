@@ -3,6 +3,7 @@
 ?>
 <div class="row">
     <div class="small-11 small-centered medium-10 medium-push-1">
+        <?php if (isset($user)) { ?>
         <h1>@<?= $user->screen_name ?>のサイコパス</h1>
         <div class="row user-on">
             <div class="small-4 medium-3 columns">
@@ -25,6 +26,9 @@
                 <a href="<?= generate_share_url_twitter(current_url(), generate_dominator_text($user->score, $user->screen_name)) ?>" class="button large">執行する<br>(ツイート)</a>
             </div>
         </div>
+        <?php } else { ?>
+        <h2>ユーザを取得できませんでした</h2>
+        <?php } ?>
     </div>
 </div>
 <?php $this->load->view('psychopassform'); ?>

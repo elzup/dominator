@@ -57,6 +57,7 @@ class Userinfoobj {
     public function set_point($point) {
         $len = mb_strlen($this->text);
 //        echo "<p>c:{$this->count} p: {$point} len: {$len}<br></p>";
+//        echo "[$point]";
         $this->score = round($point / max(1, $this->count), 1);
         $this->pre_score = $this->score;
         $this->max_score = max($this->max_score, $this->score);

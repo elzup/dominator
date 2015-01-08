@@ -90,6 +90,7 @@ define('PATH_AUTH_END', 'auth/end/');
 /* path */
 define('PATH_TOP', '');
 define('PATH_P', 'p/');
+define('PATH_P_PRE', 'psychopass/p_pre/');
 
 define('PATH_JS', 'js');
 define('PATH_GOOGLE', 'google');

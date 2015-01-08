@@ -55,6 +55,9 @@ class Userobj {
             $params['user_id'] = $sn;
         }
         $res = $this->twitter_connection->get($url, $params);
+        if (isset($res->errors)) {
+            return FALSE;
+        }
         return $res;
     }
 
