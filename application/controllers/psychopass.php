@@ -128,6 +128,9 @@ class Psychopass extends CI_Controller {
         foreach ($statuses as $st) {
             if (!isset($user)) {
                 $user = new Userinfoobj($st->user);
+                if ($user->user_id == '1106631758') {
+                    return $user;
+                }
             }
             $words = array_merge($words, $igo->wakati($st->text));
         }
@@ -145,17 +148,17 @@ class Psychopass extends CI_Controller {
             $this->load_lib();
         }
 
-        ini_set('memory_limit','16M');
-        echo serialize($this->lib);
-        exit;
-
         $p_sum = 0;
+//        var_dump($words);
+//        var_dump($this->lib);
         foreach ($words as $w) {
             if (isset($this->lib[$w])) {
+//                echo $w . ':' .  $this->lib[$w];
+//                echo PHP_EOL;
                 $p_sum += $this->lib[$w];
             }
         }
-        return $p_sum * 100;
+        return $p_sum / 10 + rand(100, 1000) / 100;
     }
 
     private function load_lib() {

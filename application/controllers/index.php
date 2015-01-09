@@ -3,7 +3,7 @@
 class Index extends CI_Controller {
 
     /** @var User_model */
-    public $user;
+    public $ser;
 
     public function __construct() {
         parent::__construct();
@@ -95,54 +95,6 @@ class Index extends CI_Controller {
 //            var_dump($user);
 //        }
         return $users_select;
-    }
-
-    private function _analize($statuses) {
-        $users = array();
-        foreach ($statuses as $st) {
-            if (!isset($users[$st->user->id])) {
-                $users[$st->user->id] = new Userinfoobj($st->user);
-            }
-            $users[$st->user->id]->add_str($st->text);
-        }
-
-        foreach ($users as $k => &$user) {
-            if ($user->count <= 5) {
-                unset($users[$k]);
-                continue;
-            }
-            $user->set_point($this->negaposi($user->text));
-        }
-        return $users;
-    }
-
-    private function _analize_one($statuses) {
-        $user = NULL;
-        foreach ($statuses as $st) {
-            if (!isset($user)) {
-                $user = new Userinfoobj($st->user);
-            }
-            $user->add_str($st->text);
-        }
-
-        $user->set_point($this->negaposi($user->text));
-        return $user;
-    }
-
-    private $lib;
-
-    private function negaposi($text) {
-        if (!isset($this->lib)) {
-            $this->load_lib();
-        }
-        $p_sum = 0;
-        foreach ($this->lib as $k => $p) {
-            if (empty($k)) {
-                continue;
-            }
-            $p_sum += mb_substr_count($text, $k, 'UTF-8');
-        }
-        return $p_sum * (40 + rand(-10, 10));
     }
 
     private function load_lib() {
