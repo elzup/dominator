@@ -158,8 +158,22 @@ class Psychopass extends CI_Controller {
                 $p_sum += $this->lib[$w];
             }
         }
-        return $p_sum / 10 + rand(100, 1000) / 100;
+
+        $fix = max(0, $p_sum - 500) * 2;
+        $fix = $p_sum;
+        $fix = max (20, $p_sum - 500) / 2 + rand(100, 1000) / 100;
+        if ($fix > 50) {
+            $fix = 50 + ($fix - 50) * 3 / 4;
+        }
+        if ($fix > 100) {
+            $fix = 100 + ($fix - 100) * 3 / 4;
+        }
+        if ($fix > 200) {
+            $fix = 200 + ($fix - 200) * 2 / 3;
+        }
+        return $fix;
     }
+
 
     private function load_lib() {
         $lib = array();
