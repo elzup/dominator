@@ -113,7 +113,7 @@ define('PATH_IMG_LOADING', PATH_IMG . '/loading-l-3.gif');
 
 
 /* Psychopass config */
-define('PS_CACHE_TIME_MINITS', 0);
+define('PS_CACHE_TIME_MINITS', 10);
 define('PS_TOP_USER_NUM', 8);
 define('PS_USER_TWEET_NUM', 100);
 
