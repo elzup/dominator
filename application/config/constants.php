@@ -113,8 +113,9 @@ define('PATH_IMG_LOADING', PATH_IMG . '/loading-l-3.gif');
 
 
 /* Psychopass config */
-define('PS_CACHE_TIME_MINITS', 10);
+define('PS_CACHE_TIME_MINITS', 0);
 define('PS_TOP_USER_NUM', 8);
+define('PS_USER_TWEET_NUM', 100);
 
 define('PS_DB_SHIFT', 10);
 
@@ -162,6 +163,11 @@ define('DB_CN_USERS_TWITTER_USER_ID', 'twitter_user_id');
 define('DB_CN_USERS_PRE_SCORE', 'pre_score');
 define('DB_CN_USERS_MAX_SCORE', 'max_score');
 define('DB_CN_USERS_LAST_UPDATE', 'last_update');
+
+define('GET_DEBUG_USER', 'd');
+
+/* End of file constants.php */
+/* Location: ./application/config/constants.php */
 
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */

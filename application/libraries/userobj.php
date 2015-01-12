@@ -48,10 +48,21 @@ class Userobj {
         return $res;
     }
 
+    public function get_friends() {
+        $param = array(
+            'count' => 20,
+        );
+        $res = $this->twitter_connection->get('friends/ids', $param);
+        if (isset($res->errors)) {
+            return FALSE;
+        }
+        return $res;
+    }
+
     public function get_user_timeline($sn, $is_screen_name = FALSE) {
         $url = 'statuses/user_timeline';
         $params = array(
-            'count' => 200,
+            'count' => PS_USER_TWEET_NUM,
         );
         if ($is_screen_name) {
             $params['screen_name'] = $sn;

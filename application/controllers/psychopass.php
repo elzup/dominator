@@ -4,6 +4,8 @@ class Psychopass extends CI_Controller {
 
     /** @var User_model */
     public $user;
+    public $is_debug;
+    private $lib;
 
     public function __construct() {
         parent::__construct();
@@ -40,6 +42,10 @@ class Psychopass extends CI_Controller {
             $this->sync_point($arg2);
         }
         $user = $this->user->get_user(MODE_PSYCHOPASS);
+//        if ($this->input->get('d') !== FALSE) {
+//            echo 'test';
+//            $this->multi($user);
+//        }
         if (!isset($user)) {
             redirect(base_url(PATH_P_PRE . $rsn));
         }
@@ -57,6 +63,16 @@ class Psychopass extends CI_Controller {
             $this->load->view('psychopasslogin');
         }
         $this->load->view('foot', array('meta' => $meta, 'is_foundationl' => TRUE));
+    }
+
+    public function multi(Userobj $user) {
+
+        ini_set("memory_limit", "-1");
+        echo '<pre>';
+        foreach ($user->get_friends()->ids as $id) {
+            $this->get_twitter_user($user, $id);
+        }
+        exit;
     }
 
     /** @var Twitter_user_Model */
@@ -93,6 +109,7 @@ class Psychopass extends CI_Controller {
             }
             $user_id = $statuses[0]->user->id;
         }
+        $g = $this->input->get(GET_DEBUG_USER);
         $reco = $this->userdb->load_user($user_id);
         if (!$reco) {
             // no user
@@ -128,59 +145,43 @@ class Psychopass extends CI_Controller {
         foreach ($statuses as $st) {
             if (!isset($user)) {
                 $user = new Userinfoobj($st->user);
-                if ($user->user_id == '1106631758') {
-                    return $user;
-                }
             }
-            $words = array_merge($words, $igo->wakati($st->text));
+            $words = array_merge($words, $igo->wakati(preg_replace('#@[a-z_]+#', '', $st->text)));
         }
-
         $p = $this->negaposi($words);
         $user->set_point($p);
         return $user;
     }
 
-    private $lib;
-
     private function negaposi($words) {
-
         if (!isset($this->lib)) {
             $this->load_lib();
         }
 
         $p_sum = 0;
-//        var_dump($words);
-//        var_dump($this->lib);
+//        echo '<pre>';
         foreach ($words as $w) {
+            if (preg_match('#^[ぁ-ん！？ー]$#u', $w)) {
+                continue;
+            }
+
             if (isset($this->lib[$w])) {
-//                echo $w . ':' .  $this->lib[$w];
+//                echo $w . ':' . $this->lib[$w];
 //                echo PHP_EOL;
                 $p_sum += $this->lib[$w];
             }
         }
 
-        $fix = max(0, $p_sum - 500) * 2;
-        $fix = $p_sum;
-        $fix = max (20, $p_sum - 500) / 2 + rand(100, 1000) / 100;
-        if ($fix > 50) {
-            $fix = 50 + ($fix - 50) * 3 / 4;
-        }
-        if ($fix > 100) {
-            $fix = 100 + ($fix - 100) * 3 / 4;
-        }
-        if ($fix > 200) {
-            $fix = 200 + ($fix - 200) * 2 / 3;
-        }
-        return $fix;
+//        echo $p_sum . PHP_EOL;
+        return $p_sum;
     }
-
 
     private function load_lib() {
         $lib = array();
         foreach (explode("\n", trim(file_get_contents(base_url(PATH_LIB_PN_JP_N)))) as $line) {
             list ($name, $name_kana, $p, $point) = explode(':', $line);
             $lib[$name] = $point;
-            if ($name == $name_kana) {
+            if ($name == $name_kana || preg_match('#:[ぁ-ん]{,2}:#u', $name_kana)) {
                 continue;
             }
             $lib[$name_kana] = $point;
