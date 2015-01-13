@@ -39,7 +39,7 @@ class Userobj {
 
     public function get_timeline() {
         $param = array(
-            'count' => 200,
+            'count' => PS_GET_TIMELINE_NUM,
         );
         $res = $this->twitter_connection->get('statuses/home_timeline', $param);
         if (isset($res->errors)) {

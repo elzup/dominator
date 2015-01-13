@@ -3,7 +3,7 @@
 
 ?>
     
-<div class="small-4 small-centered columns">
+<div class="small-10 middle-4 large-4 small-centered columns">
     <img class="eyecatch" src="<?= base_url(PATH_IMG . '/wc.png')?>" alt="">
 </div>
 <div class="small-10 small-centered columns">
