@@ -95,8 +95,8 @@ class Metaobj
 	public function setup_psychopass()
 	{
 		$this->mode = MODE_PSYCHOPASS;
-		$this->url = base_url($this->mode);
-		$this->description = 'ドミネーター';
+		$this->url = base_url();
+		$this->description = 'ドミネーターでTwitterユーザの色相をチェック';
 		$this->type = 'website';
 		$this->set_title(NAME_PSYCHOPASS);
 		$this->share_text = NAME_PSYCHOPASS . ' - あなたは何色？';

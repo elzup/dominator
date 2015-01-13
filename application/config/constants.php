@@ -58,6 +58,17 @@ define('MODE_NENSYATTER', 'nn');
 define('MODE_TOKIMIKUJI', 'tk');
 define('MODE_PSYCHOPASS', 'psychopass');
 
+define('NAME_YOPPARATTER', 'ヨッパラッタ〜');
+define('URL_YOPPARATTER', '//app.elzup.com/' . MODE_YOPPARATTER);
+define('URL_YOPPARATTER_POST', '//app.elzup.com/' . MODE_YOPPARATTER . '/post');
+
+define('NAME_NENSYATTER', '念写ったー');
+define('URL_NENSYATTER', '//app.elzup.com/' . MODE_NENSYATTER);
+define('URL_SHARE_URL', 'app.elzup.com/nn/sn/');
+
+define('NAME_TOKIMIKUJI', '時みくじ');
+define('URL_TOKIMIKUJI', '//app.elzup.com/' . MODE_TOKIMIKUJI);
+
 define('NAME_PSYCHOPASS', 'ドミネーター');
 define('URL_PSYCHOPASS', '//dominator.elzup.com/');
 define('URL_SHARE_PSYCHOPASS_URL', 'app.elzup.com/');
