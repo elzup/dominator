@@ -97,27 +97,6 @@ class Index extends CI_Controller {
         return $users_select;
     }
 
-    private function load_lib() {
-        $lib = array();
-        foreach (explode("\n", trim(file_get_contents(base_url(PATH_LIB_PN_JP_N)))) as $line) {
-            list ($name, $name_kana, $p, $point) = explode(':', $line);
-            $lib[$name] = $point;
-            if ($name == $name_kana) {
-                continue;
-            }
-            $lib[$name_kana] = $point;
-        }
-        foreach (explode("\n", trim(file_get_contents(base_url(PATH_LIB_PN_EN_N)))) as $line) {
-            list ($name, $p, $point) = explode(':', $line);
-            $lib[$name] = $point;
-            if ($name == $name_kana) {
-                continue;
-            }
-            $lib[$name_kana] = $point;
-        }
-        $this->lib = $lib;
-    }
-
     private function _get_messages() {
         $messages = array();
         if (($err = $this->session->userdata('err'))) {

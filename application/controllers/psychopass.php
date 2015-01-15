@@ -187,7 +187,7 @@ class Psychopass extends CI_Controller {
 
     private function load_lib() {
         $lib = array();
-        foreach (explode("\n", trim(file_get_contents(base_url(PATH_LIB_PN_JP_N)))) as $line) {
+        foreach (explode("\n", trim(file_get_contents(PATH_LIB_PN_JP_N))) as $line) {
             list ($name, $name_kana, $p, $point) = explode(':', $line);
             $lib[$name] = $point;
             if ($name == $name_kana || preg_match('#:[ぁ-ん]{,2}:#u', $name_kana)) {
@@ -195,7 +195,7 @@ class Psychopass extends CI_Controller {
             }
             $lib[$name_kana] = $point;
         }
-        foreach (explode("\n", trim(file_get_contents(base_url(PATH_LIB_PN_EN_N)))) as $line) {
+        foreach (explode("\n", trim(file_get_contents(PATH_LIB_PN_EN_N))) as $line) {
             list ($name, $p, $point) = explode(':', $line);
             $lib[$name] = $point;
             if ($name == $name_kana) {
