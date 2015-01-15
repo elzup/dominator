@@ -182,7 +182,7 @@ class Psychopass extends CI_Controller {
         }
 
 //        echo $p_sum . PHP_EOL;
-        return $p_sum * 1.1;
+        return $p_sum * 1.1 * 100 / PS_USER_TWEET_NUM;
     }
 
     private function load_lib() {
