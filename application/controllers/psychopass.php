@@ -146,10 +146,14 @@ class Psychopass extends CI_Controller {
     }
 
     private function _analize_one($statuses) {
+        $user = NULL;
         $igo = new Igo(PATH_LIB_IGO_DICT);
+
         $words = array();
-        $user = new Userinfoobj($st->user);
         foreach ($statuses as $st) {
+            if (!isset($user)) {
+                $user = new Userinfoobj($st->user);
+            }
             $words = array_merge($words, $igo->wakati(preg_replace('#@[a-z_]+#', '', $st->text)));
         }
         $p = $this->negaposi($words);

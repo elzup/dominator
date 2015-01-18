@@ -69,6 +69,7 @@ class Userinfoobj {
         $this->pre_score = $user->score;
         $this->max_score = max($this->max_score, $user->score);
         $this->img_path = $user->img_path;
+        $this->screen_name = $user->screen_name;
     }
 
     public function get_point_level() {
@@ -90,11 +91,11 @@ class Userinfoobj {
         if (in_array($this->img_path, str_split("0123456"))) {
             return "http://abs.twimg.com/sticky/default_profile_images/default_profile_{$this->img_path}_normal.png";
         }
-        return "http://pbs.twimg.com/profile_images/{$this->user_id}/{$this->img_path}";
+        return "http://pbs.twimg.com/profile_images/{$this->img_path}";
     }
 
     public static function extract_image_hash($url) {
-        if (!preg_match('#profile_images/(?|\d+/(.*)|default_profile_([0-9]).*)$#', $url, $m)) {
+        if (!preg_match('#profile_images/(?|(\d+/.*)|default_profile_([0-9]).*)$#', $url, $m)) {
             return '';
         }
         return $m[1];

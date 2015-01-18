@@ -15,6 +15,7 @@ class Twitter_user_model extends CI_Model {
             DB_CN_USERS_TWITTER_USER_ID => $user->user_id,
             DB_CN_USERS_PRE_SCORE => $user->score * PS_DB_SHIFT,
             DB_CN_USERS_MAX_SCORE => $user->score * PS_DB_SHIFT,
+            DB_CN_USERS_TWITTER_SCREEN_NAME => $user->screen_name,
             DB_CN_USERS_IMG_URL => $user->img_path,
         );
         return $this->db->insert(DB_TN_USERS, $data);
@@ -24,6 +25,7 @@ class Twitter_user_model extends CI_Model {
         $this->db->set(DB_CN_USERS_PRE_SCORE, $user->score * PS_DB_SHIFT);
         $this->db->set(DB_CN_USERS_MAX_SCORE, $user->max_score * PS_DB_SHIFT);
         $this->db->set(DB_CN_USERS_IMG_URL, $user->img_path);
+        $this->db->set(DB_CN_USERS_TWITTER_SCREEN_NAME, $user->screen_name);
         $this->db->where(DB_CN_USERS_TWITTER_USER_ID, $user->user_id);
         $this->db->update(DB_TN_USERS);
     }
