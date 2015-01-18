@@ -24,17 +24,17 @@ class Index extends CI_Controller {
         $this->load->view('head', array('meta' => $meta, 'main_css' => 'ps'));
         $this->load->view('navbar', array('meta' => $meta, 'user' => $user));
         $this->load->view('alert', array('messages' => $messages));
-        if (isset($user)) {
+        $users = FALSE;
+        if (!isset($user)) {
+            $this->load->view('psychopasslogin');
+        } else {
             $statuses = $user->get_timeline();
             if ($statuses !== FALSE) {
                 $users = $this->_wrap_user($statuses);
-            } else {
-                $users = FALSE;
             }
-            $this->load->view('psychopassbody', array('users' => $users));
-        } else {
-            $this->load->view('psychopasslogin');
         }
+        $this->load->view('psychopassbody', array('users' => $users));
+        $this->load->view('psychopasslog', array('users' => $users));
         $this->load->view('foot', array('meta' => $meta, 'is_foundationl' => TRUE, 'jss' => array('ps_helper')));
     }
 

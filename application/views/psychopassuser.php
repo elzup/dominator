@@ -7,7 +7,7 @@
             <h1 class="user-title">@<?= $user->screen_name ?>のサイコパス</h1>
             <div class="row user-on">
                 <div class="small-5 medium-3 columns">
-                    <img src="<?= $user->img_path ?>" alt="">
+                    <img src="<?= $user->get_image_url() ?>" alt="">
                     <p>
                         <a href="//twitter.com/<?= $user->screen_name ?>" target="_blank">@<?= $user->screen_name ?></a>
                     </p>

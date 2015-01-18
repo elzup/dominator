@@ -17,10 +17,7 @@ class Userinfoobj {
         if (!isset($obj)) {
             return;
         }
-        $this->name = $obj->name;
-        $this->screen_name = $obj->screen_name;
-        $this->user_id = $obj->id;
-        $this->img_path = $obj->profile_image_url;
+        $this->support_user($obj);
         $this->text = "";
         $this->count = 0;
         $this->score = 0;
@@ -33,13 +30,15 @@ class Userinfoobj {
         $this->score = $this->pre_score = $obj->pre_score / PS_DB_SHIFT;
         $this->max_score = $obj->max_score / PS_DB_SHIFT;
         $this->timestamp = strtotime($obj->last_update);
+
+        $this->img_path = $obj->twitter_user_id;
     }
 
     public function support_user($obj) {
         $this->screen_name = $obj->screen_name;
         $this->name = $obj->name;
         $this->user_id = $obj->id;
-        $this->img_path = $obj->profile_image_url;
+        $this->img_path = Userinfoobj::extract_image_hash($obj->profile_image_url);
     }
 
     /**
@@ -68,6 +67,7 @@ class Userinfoobj {
     public function reflect_recent(Userinfoobj $user) {
         $this->pre_score = $user->score;
         $this->max_score = max($this->max_score, $user->score);
+        $this->img_path = $user->img_path;
     }
 
     public function get_point_level() {
@@ -80,6 +80,23 @@ class Userinfoobj {
         unset($this->name);
         unset($this->img_path);
         unset($this->count);
+    }
+
+    public function get_image_url() {
+        if ("" === $this->img_path) {
+            return base_url(PATH_IMG_NOTFOUND);
+        }
+        if (in_array($this->img_path, str_split("0123456"))) {
+            return "http://abs.twimg.com/sticky/default_profile_images/default_profile_{$this->img_path}_normal.png";
+        }
+        return "http://pbs.twimg.com/profile_images/{$this->user_id}/{$this->img_path}";
+    }
+
+    public static function extract_image_hash($url) {
+        if (!preg_match('#profile_images/(?|\d+/(.*)|default_profile_([0-9]).*)$#', $url, $m)) {
+            return '';
+        }
+        return $m[1];
     }
 
 }

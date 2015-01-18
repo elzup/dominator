@@ -110,7 +110,7 @@ define('PATH_LIB_PN_EN_N', PATH_LIB . '/pn_en_nega.dic');
 define('PATH_LIB_IGO_DICT', PATH_LIB . '/ipadic');
 
 define('PATH_IMG_LOADING', PATH_IMG . '/loading-l-3.gif');
-
+define('PATH_IMG_NOTFOUND', PATH_IMG . '/notfound.png');
 
 /* Psychopass config */
 define('PS_CACHE_TIME_MINITS', 20);
@@ -164,6 +164,7 @@ define('DB_CN_USERS_TWITTER_USER_ID', 'twitter_user_id');
 define('DB_CN_USERS_PRE_SCORE', 'pre_score');
 define('DB_CN_USERS_MAX_SCORE', 'max_score');
 define('DB_CN_USERS_LAST_UPDATE', 'last_update');
+define('DB_CN_USERS_IMG_URL', 'img_url');
 
 define('GET_DEBUG_USER', 'd');
 

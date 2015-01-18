@@ -1,9 +1,9 @@
 <?php
 /* @var $users Userinfoobj[] */
 
-if (!function_exists('user_box')) {
+if (!function_exists('user_box_nosync')) {
 
-    function user_box(Userinfoobj $user) {
+    function user_box_nosync(Userinfoobj $user) {
         ?>
         <div class="user">
             <a href="<?= base_url(PATH_P_PRE . $user->screen_name) ?>">
@@ -16,19 +16,17 @@ if (!function_exists('user_box')) {
                 執行する
             </a>
                 <!--<li class="name"><?= h($user->name) ?></li>-->
-            <p class="point">犯罪係数<span class="point" data-sync-point="<?= $user->user_id ?>"><img class="loading" src="<?= base_url(PATH_IMG . '/loading.gif') ?>" alt=""></span></p>
+            <p class="point">犯罪係数<span class="point"><?= $user->score ?></span></p>
         </div>
-
         <?php
     }
 
 }
 
-$this->load->view('psychopassform');
 ?>
 <div class="row">
     <div class="small-12 small-centered medium-10 medium-push-1">
-        <h3>現在のあなたのTLにいるフレンド</h3>
+        <h3>最近執行されたユーザ</h3>
         <?php if ($users !== FALSE) { ?>
             <ul class="small-block-grid-2 medium-block-grid-4">
                 <?php
@@ -40,7 +38,7 @@ $this->load->view('psychopassform');
                 ?>
             </ul>
         <?php } else { ?>
-            <h5>TL が読み込めません Twitter制限 または 非ログインユーザ</h5>
+            <h5>謎のエラーです</h5>
         <?php } ?>
     </div>
 </div>
