@@ -3,7 +3,9 @@
 class Index extends CI_Controller {
 
     /** @var User_model */
-    public $ser;
+    public $user;
+    /** @var Twitter_user_Model */
+    public $userdb;
 
     public function __construct() {
         parent::__construct();
@@ -34,7 +36,8 @@ class Index extends CI_Controller {
             }
         }
         $this->load->view('psychopassbody', array('users' => $users));
-        $this->load->view('psychopasslog', array('users' => $users));
+        $usersl = $this->userdb->load_recent_users();
+        $this->load->view('psychopasslog', array('users' => $usersl));
         $this->load->view('foot', array('meta' => $meta, 'is_foundationl' => TRUE, 'jss' => array('ps_helper')));
     }
 

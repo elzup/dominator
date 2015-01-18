@@ -27,11 +27,12 @@ class Userinfoobj {
 
     public function set_user($obj) {
         $this->user_id = $obj->twitter_user_id;
+        $this->screen_name = $obj->twitter_screen_name;
         $this->score = $this->pre_score = $obj->pre_score / PS_DB_SHIFT;
         $this->max_score = $obj->max_score / PS_DB_SHIFT;
         $this->timestamp = strtotime($obj->last_update);
-
-        $this->img_path = $obj->twitter_user_id;
+        $this->img_path = $obj->img_url;
+        return $this;
     }
 
     public function support_user($obj) {
@@ -56,7 +57,7 @@ class Userinfoobj {
     }
 
     public function set_point($point) {
-        $len = mb_strlen($this->text);
+//        $len = mb_strlen($this->text);
 //        echo "<p>c:{$this->count} p: {$point} len: {$len}<br></p>";
 //        echo "[$point]";
         $this->score = round($point / max(1, $this->count), 1);

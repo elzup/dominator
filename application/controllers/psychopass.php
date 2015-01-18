@@ -4,6 +4,8 @@ class Psychopass extends CI_Controller {
 
     /** @var User_model */
     public $user;
+    /** @var Twitter_user_Model */
+    public $userdb;
     public $is_debug;
     private $lib;
 
@@ -75,9 +77,6 @@ class Psychopass extends CI_Controller {
         exit;
     }
 
-    /** @var Twitter_user_Model */
-    public $userdb;
-
     public function sync_point($user_id) {
         if (!$user = $this->user->get_user(MODE_PSYCHOPASS)) {
             $val = array();
@@ -147,14 +146,10 @@ class Psychopass extends CI_Controller {
     }
 
     private function _analize_one($statuses) {
-        $user = NULL;
         $igo = new Igo(PATH_LIB_IGO_DICT);
-
         $words = array();
+        $user = new Userinfoobj($st->user);
         foreach ($statuses as $st) {
-            if (!isset($user)) {
-                $user = new Userinfoobj($st->user);
-            }
             $words = array_merge($words, $igo->wakati(preg_replace('#@[a-z_]+#', '', $st->text)));
         }
         $p = $this->negaposi($words);

@@ -34,10 +34,7 @@ class Twitter_user_model extends CI_Model {
     }
 
     public function load_recent_users() {
-        $this->db->order_by(DB_CN_USERS_LAST_UPDATE, 'desc');
-        $this->db->limit(8);
-        $query = $this->db->get(DB_TN_USERS);
-        return $query->result();
+        return wrap_users($this->select_recent_users());
     }
 
     private function select_user($twitter_user_id) {
@@ -46,5 +43,13 @@ class Twitter_user_model extends CI_Model {
         $query = $this->db->get(DB_TN_USERS);
         return $query->result();
     }
+
+    private function select_recent_users() {
+        $this->db->order_by(DB_CN_USERS_LAST_UPDATE, 'desc');
+        $this->db->limit(PS_TOP_USER_NUM);
+        $query = $this->db->get(DB_TN_USERS);
+        return $query->result();
+    }
+
 
 }

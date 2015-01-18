@@ -22,7 +22,6 @@ if (!function_exists('user_box_nosync')) {
     }
 
 }
-
 ?>
 <div class="row">
     <div class="small-12 small-centered medium-10 medium-push-1">
@@ -32,7 +31,7 @@ if (!function_exists('user_box_nosync')) {
                 <?php
                 foreach ($users as $user) {
                     echo '<li>';
-                    user_box($user);
+                    user_box_nosync($user);
                     echo '</li>';
                 }
                 ?>

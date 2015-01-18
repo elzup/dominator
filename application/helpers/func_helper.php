@@ -328,3 +328,9 @@ function generate_dominator_text($score, $screen_name) {
     $text = "犯罪係数{$score_text} {$torigger_text} #dominator";
     return $text;
 }
+
+function wrap_users(array $objs) {
+    return array_map(function($obj) {
+        return (new Userinfoobj())->set_user($obj);
+    }, $objs);
+}
