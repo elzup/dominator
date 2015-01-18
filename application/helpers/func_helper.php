@@ -331,6 +331,7 @@ function generate_dominator_text($score, $screen_name) {
 
 function wrap_users(array $objs) {
     return array_map(function($obj) {
-        return (new Userinfoobj())->set_user($obj);
+        $u = new Userinfoobj();
+        return $u->set_user($obj);
     }, $objs);
 }
