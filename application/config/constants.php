@@ -111,6 +111,8 @@ define('PATH_LIB_IGO_DICT', PATH_LIB . '/ipadic');
 
 define('PATH_IMG_LOADING', PATH_IMG . '/loading-l-3.gif');
 define('PATH_IMG_NOTFOUND', PATH_IMG . '/notfound.png');
+define('PATH_IMG_ARZZUP', PATH_IMG . '/co50.png');
+define('ADMIN_TWITTER_ID', "1106631758");
 
 /* Psychopass config */
 # define('PS_CACHE_TIME_MINITS', 0);

@@ -68,8 +68,6 @@ class Userinfoobj {
     public function reflect_recent(Userinfoobj $user) {
         $this->pre_score = $user->score;
         $this->max_score = max($this->max_score, $user->score);
-        $this->img_path = $user->img_path;
-        $this->screen_name = $user->screen_name;
     }
 
     public function get_point_level() {
@@ -85,6 +83,9 @@ class Userinfoobj {
     }
 
     public function get_image_url() {
+        if ($this->user_id === ADMIN_TWITTER_ID) {
+            return base_url(PATH_IMG_ARZZUP);
+        }
         if ("" === $this->img_path) {
             return base_url(PATH_IMG_NOTFOUND);
         }

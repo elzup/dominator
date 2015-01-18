@@ -1,5 +1,6 @@
 <?php
 /* @var $user Userinfoobj */
+/* @var $me Userobj */
 ?>
 <div class="row">
     <div class="small-12 small-centered medium-10 medium-push-1">
@@ -26,6 +27,12 @@
                 <div class="hidden-for-small medium-3 columns">
                     <!--TODO:-->
                     <a href="<?= generate_share_url_twitter(base_url(PATH_P . $user->screen_name), generate_dominator_text($user->score, $user->screen_name)) ?>" class="button large">執行する<br>(ツイート)</a>
+                    <?php if (!isset($me)) { ?>
+                        <div>
+                            <p class="notice">このユーザの情報は古い<br>可能性があります</p>
+                            <a <?= attr_href(PATH_LOGIN . MODE_PSYCHOPASS) ?>>ログインして確認</a>
+                        </div>
+                    <?php } ?>
                 </div>
             </div>
             <div class="color-ribbon show-for-small-only" style="background: url(<?= base_url("./images/color.png") ?>) <?= floor($user->score / 10) ?>% 0;"></div>
@@ -33,9 +40,22 @@
                 <div class="small-8 small-centered columns">
                     <!--TODO:-->
                     <a href="<?= generate_share_url_twitter(base_url(PATH_P . $user->screen_name), generate_dominator_text($user->score, $user->screen_name)) ?>" class="button expand large">執行する<br>(ツイート)</a>
+                    <?php if (!isset($me)) { ?>
+                        <div>
+                            <p class="notice">このユーザの情報は古い<br>可能性があります</p>
+                            <a <?= attr_href(PATH_LOGIN . MODE_PSYCHOPASS) ?>>ログインして確認</a>
+                        </div>
+                    <?php } ?>
                 </div>
             <?php } else { ?>
-                <h2>ユーザを取得できませんでした</h2>
+                <?php if (isset($me)) { ?>
+                    <h2>ユーザを取得できませんでした</h2>
+                <?php } else { ?>
+                    <h2>このユーザはまだドミネーターで未確認です</h2>
+                    <p>
+                        <a <?= attr_href(PATH_LOGIN . MODE_PSYCHOPASS) ?> class="button medium">ログインして確認</a>
+                    </p>
+                <?php } ?>
             <?php } ?>
         </div>
     </div>

@@ -4,6 +4,7 @@ class Psychopass extends CI_Controller {
 
     /** @var User_model */
     public $user;
+
     /** @var Twitter_user_Model */
     public $userdb;
     public $is_debug;
@@ -22,9 +23,6 @@ class Psychopass extends CI_Controller {
 
     public function p_pre($screen_name = NULL, $arg2 = "") {
         $user = $this->user->get_user(MODE_PSYCHOPASS);
-        if (!isset($user)) {
-            redirect(base_url());
-        }
         $meta = new Metaobj();
         $meta->set_title('ロード中');
         $this->load->view('head', array('meta' => $meta, 'main_css' => 'ps'));
@@ -48,9 +46,6 @@ class Psychopass extends CI_Controller {
 //            echo 'test';
 //            $this->multi($user);
 //        }
-        if (!isset($user)) {
-            redirect(base_url(PATH_P_PRE . $rsn));
-        }
         $meta = new Metaobj();
         $meta->setup_psychopass();
         $messages = $this->_get_messages();
@@ -58,12 +53,8 @@ class Psychopass extends CI_Controller {
         $this->load->view('head', array('meta' => $meta, 'main_css' => 'ps'));
         $this->load->view('navbar', array('meta' => $meta, 'user' => $user));
         $this->load->view('alert', array('messages' => $messages));
-        if (isset($user)) {
-            $u = $this->get_twitter_user($user, $screen_name, TRUE);
-            $this->load->view('psychopassuser', array('user' => $u));
-        } else {
-            $this->load->view('psychopasslogin');
-        }
+        $u = $this->get_twitter_user($user, $screen_name, TRUE);
+        $this->load->view('psychopassuser', array('me' => $user, 'user' => $u));
         $this->load->view('foot', array('meta' => $meta, 'is_foundationl' => TRUE));
     }
 
@@ -89,57 +80,43 @@ class Psychopass extends CI_Controller {
         $this->load->view('json_value', array('value' => array($u)));
     }
 
-    public function get_point() {
-        
-    }
-
     /**
      * 
      * @param type $user_id
      * @param type $is_screen_name
      * @return Userinfoobj
      */
-    private function get_twitter_user(Userobj $user, $user_id, $is_screen_name = FALSE) {
-        if (($is_screen_name && preg_match("#arzzup#i", $user_id)) || $user_id == "1106631758") {
-            $reco = $this->userdb->load_user("1106631758");
+    private function get_twitter_user($user, $user_id, $is_screen_name = FALSE) {
+        if (($is_screen_name && preg_match("#arzzup#i", $user_id)) || $user_id == ADMIN_TWITTER_ID) {
+            $reco = $this->userdb->load_user(ADMIN_TWITTER_ID);
             $u = new Userinfoobj();
             $u->set_user($reco);
             $u->screen_name = "Arzzup";
             $u->max_score = "999.9";
-            $u->img_path = base_url(PATH_IMG . '/co50.png');
             return $u;
         }
-        if ($is_screen_name) {
-            $statuses = $user->get_user_timeline($user_id, TRUE);
-//            var_dump($statuses);
-            if ($statuses === FALSE) {
-                return NULL;
-            }
-            $user_id = $statuses[0]->user->id;
-        }
+        $reco = $this->userdb->load_user($user_id, $is_screen_name);
         $g = $this->input->get(GET_DEBUG_USER);
-        $reco = $this->userdb->load_user($user_id);
         if (!$reco) {
             // no user
-            if (!isset($statuses)) {
-                $statuses = $user->get_user_timeline($user_id);
+            if (!isset($user)) {
+                return null;
             }
+            $statuses = $user->get_user_timeline($user_id, $is_screen_name);
             $u = $this->_analize_one($statuses);
             $this->userdb->regist_user($u);
         } else {
             $u = new Userinfoobj();
             $u->set_user($reco);
-            if (!$u->is_recent()) {
-                if (!isset($statuses)) {
-                    $statuses = $user->get_user_timeline($user_id);
-                }
+            if (!$u->is_recent() && isset($user)) {
+                $statuses = $user->get_user_timeline($user_id, $is_screen_name);
                 $u_pre = $u;
                 $u = $this->_analize_one($statuses);
                 $u->reflect_recent($u_pre);
                 $this->userdb->update_user($u);
             }
         }
-        if ($is_screen_name) {
+        if (isset($user) && isset($statuses)) {
             $u->support_user($statuses[0]->user);
         }
         return $u;

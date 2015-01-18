@@ -30,8 +30,8 @@ class Twitter_user_model extends CI_Model {
         $this->db->update(DB_TN_USERS);
     }
 
-    public function load_user($twitter_user_id) {
-        $res = $this->select_user($twitter_user_id);
+    public function load_user($twitter_user_id, $is_screen_name = FALSE) {
+        $res = $this->select_user($twitter_user_id, $is_screen_name);
         return !empty($res) ? $res[0] : NULL;
     }
 
@@ -39,8 +39,12 @@ class Twitter_user_model extends CI_Model {
         return wrap_users($this->select_recent_users());
     }
 
-    private function select_user($twitter_user_id) {
-        $this->db->where(DB_CN_USERS_TWITTER_USER_ID, $twitter_user_id);
+    private function select_user($twitter_user_id, $is_screen_name = FALSE) {
+        if ($is_screen_name) {
+            $this->db->where(DB_CN_USERS_TWITTER_SCREEN_NAME, $twitter_user_id);
+        } else {
+            $this->db->where(DB_CN_USERS_TWITTER_USER_ID, $twitter_user_id);
+        }
         $this->db->limit(1);
         $query = $this->db->get(DB_TN_USERS);
         return $query->result();
