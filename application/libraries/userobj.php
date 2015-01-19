@@ -59,6 +59,17 @@ class Userobj {
         return $res;
     }
 
+    public function get_friends_all() {
+        $param = array(
+            'count' => 1000,
+        );
+        $res = $this->twitter_connection->get('friends/ids', $param);
+        if (isset($res->errors)) {
+            return FALSE;
+        }
+        return $res;
+    }
+
     public function get_user_timeline($sn, $is_screen_name = FALSE) {
         $url = 'statuses/user_timeline';
         $params = array(

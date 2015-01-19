@@ -1,6 +1,7 @@
 <?php
 /* @var $user Userinfoobj */
 /* @var $me Userobj */
+# echo implode(':', array($user->img_path, $user->get_image_url(), $user->user_id, ADMIN_TWITTER_ID));
 ?>
 <div class="row">
     <div class="small-12 small-centered medium-10 medium-push-1">

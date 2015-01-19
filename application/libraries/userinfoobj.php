@@ -83,7 +83,7 @@ class Userinfoobj {
     }
 
     public function get_image_url() {
-        if ($this->user_id === ADMIN_TWITTER_ID) {
+        if ($this->user_id == ADMIN_TWITTER_ID) {
             return base_url(PATH_IMG_ARZZUP);
         }
         if ("" === $this->img_path) {

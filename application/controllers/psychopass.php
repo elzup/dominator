@@ -54,6 +54,7 @@ class Psychopass extends CI_Controller {
         $this->load->view('navbar', array('meta' => $meta, 'user' => $user));
         $this->load->view('alert', array('messages' => $messages));
         $u = $this->get_twitter_user($user, $screen_name, TRUE);
+        $u = $this->get_twitter_user($user, $screen_name, TRUE);
         $this->load->view('psychopassuser', array('me' => $user, 'user' => $u));
         $this->load->view('foot', array('meta' => $meta, 'is_foundationl' => TRUE));
     }
@@ -80,6 +81,12 @@ class Psychopass extends CI_Controller {
         $this->load->view('json_value', array('value' => array($u)));
     }
 
+    public function init_my_followers() {
+        $user = $this->user->get_user(MODE_PSYCHOPASS);
+        $ids = $user->get_friends_all()->ids;
+        array_chunk($ids, 100);
+    }
+
     /**
      * 
      * @param type $user_id
@@ -88,10 +95,10 @@ class Psychopass extends CI_Controller {
      */
     private function get_twitter_user($user, $user_id, $is_screen_name = FALSE) {
         if (($is_screen_name && preg_match("#arzzup#i", $user_id)) || $user_id == ADMIN_TWITTER_ID) {
-            $reco = $this->userdb->load_user(ADMIN_TWITTER_ID);
             $u = new Userinfoobj();
-            $u->set_user($reco);
+            $u->user_id = ADMIN_TWITTER_ID;
             $u->screen_name = "Arzzup";
+            $u->score = 0;
             $u->max_score = "999.9";
             return $u;
         }
