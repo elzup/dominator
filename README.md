@@ -1,7 +1,6 @@
-#app.elzup.com
+ドミネーター
 ---
-## yopparatter
-作成したWebアプリの倉庫
+ユーザの犯罪係数を測ります
 
-[app.elzup.com](app.elzup.com)
+[dominator.elzup.com](dominator.elzup.com)
 
