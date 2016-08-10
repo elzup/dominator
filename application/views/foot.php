@@ -9,7 +9,7 @@
     <div class="small-10 small-push-1 medium-10 medium-push-1 lumns">
         0 〜 99 健全な人間です<br>
         100 〜 299 危険人物です制圧して下さい<br>
-        300 〜 速やかに廃除して下さい
+        300 〜 速やかに排除して下さい
     </div>
 </div>
 </div>
