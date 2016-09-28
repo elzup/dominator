@@ -125,12 +125,10 @@ define('PS_DB_SHIFT', 10);
 
 
 /* online lib url */
-define('URL_TWITTER_WIDGETS', 'http://platform.twitter.com/widgets.js');
-define('URL_YAHOO_RESET_CSS', 'http://yui.yahooapis.com/3.0.0/build/cssreset/reset-min.css');
-define('FONT_GOOGLE_ALDRICH', 'http://fonts.googleapis.com/css?family=Aldrich');
+define('URL_TWITTER_WIDGETS', 'https://platform.twitter.com/widgets.js');
+define('URL_YAHOO_RESET_CSS', 'https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css');
+define('FONT_GOOGLE_ALDRICH', 'https://fonts.googleapis.com/css?family=Aldrich');
 define('URL_JQUERY', 'https://code.jquery.com/jquery.js');
-
-define('URL_YUI', 'http://yui.yahooapis.com/3.16.0/build/yui/yui-min.js');
 
 /* icon */
 define('ICON_HOT', 'glyphicon glyphicon-fire');

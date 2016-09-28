@@ -90,9 +90,9 @@ class Userinfoobj {
             return base_url(PATH_IMG_NOTFOUND);
         }
         if (in_array($this->img_path, str_split("0123456"))) {
-            return "http://abs.twimg.com/sticky/default_profile_images/default_profile_{$this->img_path}_normal.png";
+            return "https://abs.twimg.com/sticky/default_profile_images/default_profile_{$this->img_path}_normal.png";
         }
-        return "http://pbs.twimg.com/profile_images/{$this->img_path}";
+        return "https://pbs.twimg.com/profile_images/{$this->img_path}";
     }
 
     public static function extract_image_hash($url) {
